@@ -1,2 +1,2 @@
-# RaDePi
-An educational Live OS based on Debian 13, inspired by Raspberry Pi Desktop. It supports both live boot and physical installation. （日本語訳：Raspberry Pi Desktopにインスパイアされた、Debian 13ベースの教育用Live OS。ライブ起動と物理インストールの両方に対応しています。）
+RaDePi is a secure and modern educational operating system based on Debian 13. Created as an homage to the Raspberry Pi Desktop, it provides an updated environment tailored for learning. RaDePi functions as a Live OS but also includes a built-in installer, allowing users to easily install it to their local drives after trying it out.
+（日本語訳：RaDePiは、Debian 13をベースにした安全でモダンな教育用オペレーティングシステムです。Raspberry Pi Desktopへのオマージュとして作成され、学習に最適な最新の環境を提供します。RaDePiはLive OSとして機能しますが、インストーラーも内蔵しているため、お試し後にそのままローカルドライブへ簡単にインストールすることが可能です。）
