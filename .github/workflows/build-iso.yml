@@ -24,32 +24,26 @@ jobs:
           sudo rm -rf ${{ github.workspace }}/* || true
           sudo rm -rf ${{ github.workspace }}/.[!.]* || true
           
-      - name: Checkout code (リポジトリのファイルを読み込み)
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Make script executable (実行権限を付与)
-        run: chmod +x scripts/build.sh
+      - name: Run build script
+        run: |
+          chmod +x ./scripts/build.sh
+          ./scripts/build.sh
 
-      - name: Run Build Script (ビルド開始)
-        run: ./scripts/build.sh
+      # ISOファイルのアップロード
+    #  - name: Upload ISO artifact
+    #    uses: actions/upload-artifact@v4
+    #    with:
+    #      name: radepi-iso
+    #      path: RaDePi-latest.iso
+    #      retention-days: 7
 
-      - name: Fix permissions for upload
-        run: sudo chown -R runner:docker work/
-
-   #   - name: Upload ISO (完成したISOを保存)
-   #     uses: actions/upload-artifact@v4
-   #     with:
-   #       name: RaDePi-ISO
-   #       path: work/glos.iso
-   #       if-no-files-found: error
-   #       retention-days: 1
-
-   #   - name: Upload Boot Files (iPXE用ファイルの保存)
-   #     uses: actions/upload-artifact@v4
-   #     with:
-   #       name: RaDePi-Boot-Files
-   #       path: |
-   #         work/image/live/vmlinuz
-   #         work/image/live/initrd.img
-   #         work/image/live/filesystem.squashfs
-   #       retention-days: 1
+      # iPXE用ファイル群のアップロードを追加
+    #  - name: Upload PXE assets
+    #    uses: actions/upload-artifact@v4
+    #    with:
+    #      name: radepi-pxe-assets
+    #      path: pxe-assets/
+    #      retention-days: 7
