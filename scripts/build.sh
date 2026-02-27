@@ -14,11 +14,9 @@ mkdir -p "$WORK_DIR"
 cd "$WORK_DIR"
 
 echo "=== 1. クリーンアップ ==="
-# 自前ランナーのローカルキャッシュ（前回のゴミ）を確実に消去します
 sudo lb clean || true
 
 echo "=== 2. Configの生成 ==="
-# OSの基本設定
 lb config noauto \
     --distribution trixie \
     --architecture amd64 \
@@ -30,17 +28,28 @@ lb config noauto \
     --bootappend-live "boot=live components locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo"
 
 echo "=== 3. カスタムファイルの適用 ==="
-# GitHubリポジトリ内にある config フォルダ（パッケージリストなど）を適用
 if [ -d "${BASE_DIR}/config" ]; then
     cp -r "${BASE_DIR}/config"/* config/
 fi
 
 echo "=== 4. ISOビルド実行 ==="
-# ここで実際のダウンロードと構築が走ります
 sudo lb build
 
-echo "=== 5. 後処理 ==="
-# 完成したISOをリポジトリのルートに移動してリネーム
+echo "=== 5. iPXE用ファイルの抽出 ==="
+# iPXEブートに必要なファイル群を専用フォルダにまとめます
+PXE_DIR="${BASE_DIR}/pxe-assets"
+mkdir -p "$PXE_DIR"
+
+if [ -d "binary/live" ]; then
+    cp binary/live/vmlinuz* "$PXE_DIR/"
+    cp binary/live/initrd* "$PXE_DIR/"
+    cp binary/live/filesystem.squashfs "$PXE_DIR/"
+    echo "iPXE用ファイルの抽出に成功しました。"
+else
+    echo "警告: binary/live ディレクトリが見つかりません。抽出をスキップします。"
+fi
+
+echo "=== 6. 後処理 ==="
 if [ -f live-image-amd64.hybrid.iso ]; then
     mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-latest.iso"
     echo "ビルド成功！ ISOファイルが作成されました。"
