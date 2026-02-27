@@ -1,0 +1,55 @@
+name: Build RaDePi ISO
+
+on:
+  #push:
+  #  branches: [ "main" ]
+  workflow_dispatch: # 手動で「Run」ボタンを押しても起動できるようにする設定
+
+jobs:
+  build:
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
+    
+    steps:
+      - name: Force cleanup with sudo
+        run: |
+          echo "Previous build cleanup starting..."
+          # マウントが残っていると削除できないため、まず解除
+          sudo umount -l ${{ github.workspace }}/work/chroot/dev/pts || true
+          sudo umount -l ${{ github.workspace }}/work/chroot/dev || true
+          sudo umount -l ${{ github.workspace }}/work/chroot/proc || true
+          sudo umount -l ${{ github.workspace }}/work/chroot/sys || true
+          sudo umount -l ${{ github.workspace }}/work/chroot/run || true
+          # sudo権限でディレクトリの中身を物理的に消去
+          sudo rm -rf ${{ github.workspace }}/* || true
+          sudo rm -rf ${{ github.workspace }}/.[!.]* || true
+          
+      - name: Checkout code (リポジトリのファイルを読み込み)
+        uses: actions/checkout@v4
+
+      - name: Make script executable (実行権限を付与)
+        run: chmod +x scripts/build.sh
+
+      - name: Run Build Script (ビルド開始)
+        run: ./scripts/build.sh
+
+      - name: Fix permissions for upload
+        run: sudo chown -R runner:docker work/
+
+   #   - name: Upload ISO (完成したISOを保存)
+   #     uses: actions/upload-artifact@v4
+   #     with:
+   #       name: RaDePi-ISO
+   #       path: work/glos.iso
+   #       if-no-files-found: error
+   #       retention-days: 1
+
+   #   - name: Upload Boot Files (iPXE用ファイルの保存)
+   #     uses: actions/upload-artifact@v4
+   #     with:
+   #       name: RaDePi-Boot-Files
+   #       path: |
+   #         work/image/live/vmlinuz
+   #         work/image/live/initrd.img
+   #         work/image/live/filesystem.squashfs
+   #       retention-days: 1
