@@ -1,7 +1,37 @@
+# デスクトップ環境
 task-lxde-desktop
+
+# ネットワーク・通信機器
+network-manager-gnome
+bluez
+blueman
+
+# リモートアクセス
+openssh-server
+x11vnc
+remmina
+
+# システム管理・基本ツール
+sudo
+git
+curl
+wget
+gparted
+rpi-imager
+
+# 教育・プログラミング
 scratch
 thonny
+geany
+
+# 3D・ものづくり・デザイン
 freecad
 blender
+inkscape
+arduino
+kicad
+
+# 一般アプリケーション
 chromium
+firefox-esr
 libreoffice
