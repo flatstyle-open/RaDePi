@@ -25,7 +25,7 @@ lb config noauto \
     --iso-application "RaDePi OS" \
     --iso-publisher "RaDePi Project" \
     --iso-volume "RaDePi Live" \
-    --bootappend-live "boot=live components locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo username=radepi user-fullname=RaDePi"
+    --bootappend-live "boot=live components locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo username=radepi user-fullname=RaDePi hostname=radepi"
 
 echo "=== 3. カスタムファイルの適用 ==="
 if [ -d "${BASE_DIR}/config" ]; then
