@@ -55,11 +55,36 @@ if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/xfce/xfce-x.svg
 fi
 
-# 4. XFCEの初期設定 (ダークモードと壁紙)
+# 4. システム背景の「完全乗っ取り」配置
+TARGET_DIR="config/includes.chroot/usr/share/images/desktop-base"
+mkdir -p "$TARGET_DIR"
+
+# ① default 用
+if [ -f "${BASE_DIR}/image/RaDePi-bg-default.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-bg-default.png" "$TARGET_DIR/default"
+    echo "default用背景を配置しました。"
+fi
+
+# ② desktop-background 用
+if [ -f "${BASE_DIR}/image/RaDePi-bg-desktop.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-bg-desktop.png" "$TARGET_DIR/desktop-background"
+    echo "desktop-background用背景を配置しました。"
+fi
+
+# ③ ログイン画面用
+if [ -f "${BASE_DIR}/image/RaDePi-login-bg.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-login-bg.png" "$TARGET_DIR/login-background.svg"
+    echo "ログイン画面用背景を配置しました。"
+fi
+
+# ④ GRUB起動メニュー用（4:3推奨）
+if [ -f "${BASE_DIR}/image/RaDePi-grub.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-grub.png" "$TARGET_DIR/desktop-grub.png"
+    echo "GRUB用背景を配置しました。"
+fi
+# 5. XFCEの初期設定 (ダークモードのみ)
 XFCE_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
 mkdir -p "$XFCE_CONF_DIR"
-
-# テーマをAdwaita-dark（標準搭載のダークテーマ）にする設定
 cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
 <?xml version="1.0" encoding="UTF-8"?>
 <channel name="xsettings" version="1.0">
@@ -68,21 +93,7 @@ cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
   </property>
 </channel>
 EOF
-
-# 5. 壁紙の強制適用スクリプト (autostart) 
-AUTOSTART_DIR="config/includes.chroot/etc/skel/.config/autostart"
-mkdir -p "$AUTOSTART_DIR"
-cat << 'EOF' > "$AUTOSTART_DIR/set-wallpaper.desktop"
-[Desktop Entry]
-Type=Application
-Exec=sh -c 'sleep 2 && xfconf-query -c xfce4-desktop -m -p /backdrop -R | grep "last-image" | while read -r line; do xfconf-query -c xfce4-desktop -p "$line" -s /usr/share/backgrounds/xfce/radepi-bg.png; done'
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name=Set RaDePi Wallpaper
-EOF
-
-echo "XFCEのダークモードと壁紙強制設定を適用しました。"
+echo "XFCEのダークモード設定を適用しました。"
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
