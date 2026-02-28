@@ -50,9 +50,9 @@ EOF
 echo "zram用のsysctlチューニングを適用しました。"
 
 # 3. 壁紙画像をOS内に配置
-mkdir -p config/includes.chroot/usr/share/backgrounds/
+mkdir -p config/includes.chroot/usr/share/backgrounds/xfce
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
-    cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/radepi-bg.png
+    cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/xfce/radepi-bg.png
 fi
 
 # 4. XFCEの初期設定 (ダークモードと壁紙)
@@ -75,7 +75,7 @@ mkdir -p "$AUTOSTART_DIR"
 cat << 'EOF' > "$AUTOSTART_DIR/set-wallpaper.desktop"
 [Desktop Entry]
 Type=Application
-Exec=sh -c 'sleep 2 && xfconf-query -c xfce4-desktop -m -p /backdrop -R | grep "last-image" | while read -r line; do xfconf-query -c xfce4-desktop -p "$line" -s /usr/share/backgrounds/radepi-bg.png; done'
+Exec=sh -c 'sleep 2 && xfconf-query -c xfce4-desktop -m -p /backdrop -R | grep "last-image" | while read -r line; do xfconf-query -c xfce4-desktop -p "$line" -s /usr/share/backgrounds/xfce/radepi-bg.png; done'
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
