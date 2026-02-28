@@ -52,7 +52,7 @@ echo "zram用のsysctlチューニングを適用しました。"
 # 3. 壁紙画像をOS内に配置
 mkdir -p config/includes.chroot/usr/share/backgrounds/xfce
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
-    cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/xfce/radepi-bg.png
+    cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/xfce/xfce-x.svg
 fi
 
 # 4. XFCEの初期設定 (ダークモードと壁紙)
