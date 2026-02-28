@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+echo "=== VS Codeのインストールを開始します ==="
+# 公式サイトから最新の .deb ファイルを /tmp にダウンロード
+wget -qO /tmp/vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+
+# aptを使って依存関係を含めてインストール
+apt-get install -y /tmp/vscode.deb
+
+# ダウンロードしたファイルを削除してお掃除
+rm -f /tmp/vscode.deb
+echo "=== VS Codeのインストールが完了しました ==="
