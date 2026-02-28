@@ -6,6 +6,7 @@ task-xfce-desktop
 # ネットワークファイル共有サポート
 gvfs-backends
 smbclient
+samba
 
 # 日本語環境・日本語入力
 fonts-noto-cjk
