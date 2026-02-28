@@ -8,6 +8,7 @@ gvfs-backends
 smbclient
 samba
 wsdd
+avahi-daemon
 
 # 日本語環境・日本語入力
 fonts-noto-cjk
