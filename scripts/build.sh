@@ -82,6 +82,7 @@ if [ -f "${BASE_DIR}/image/RaDePi-grub.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-grub.png" "$TARGET_DIR/desktop-grub.png"
     echo "GRUB用背景を配置しました。"
 fi
+
 # 5. XFCEの初期設定 (ダークモードのみ)
 XFCE_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
 mkdir -p "$XFCE_CONF_DIR"
@@ -95,7 +96,17 @@ cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
 EOF
 echo "XFCEのダークモード設定を適用しました。"
 
-# 6. SSHのパスワードログイン許可設定
+# 6. XFCEの初期パネル設定
+XFCE_PANEL_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
+if [ -f "${BASE_DIR}/custom-config/xfce4-panel.xml" ]; then
+    mkdir -p "$XFCE_PANEL_CONF_DIR"  # ← ★念のための安全策
+    cp "${BASE_DIR}/custom-config/xfce4-panel.xml" "$XFCE_PANEL_CONF_DIR/xfce4-panel.xml"
+    echo "XFCEの初期パネル設定を適用しました。"
+else
+    echo "カスタムパネル設定が見つからないため、標準パネルを適用します。"
+fi
+
+# 7. SSHのパスワードログイン許可設定
 SSH_CONF_DIR="config/includes.chroot/etc/ssh/sshd_config.d"
 mkdir -p "$SSH_CONF_DIR"
 cat << 'EOF' > "$SSH_CONF_DIR/99-radepi-ssh.conf"
