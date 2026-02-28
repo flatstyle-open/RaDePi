@@ -95,6 +95,14 @@ cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
 EOF
 echo "XFCEのダークモード設定を適用しました。"
 
+# 6. SSHのパスワードログイン許可設定
+SSH_CONF_DIR="config/includes.chroot/etc/ssh/sshd_config.d"
+mkdir -p "$SSH_CONF_DIR"
+cat << 'EOF' > "$SSH_CONF_DIR/99-radepi-ssh.conf"
+PasswordAuthentication yes
+EOF
+echo "SSHのパスワードログイン許可設定を適用しました。"
+
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
 
