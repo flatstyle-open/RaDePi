@@ -38,16 +38,24 @@ mkdir -p config/includes.chroot/etc/default
 cat << 'EOF' > config/includes.chroot/etc/default/zramswap
 ALGO=zstd
 PERCENT=50
+PRIORITY=100
 EOF
 echo "zram-toolsの設定を適用しました。"
 
-# 2. 壁紙画像をOS内に配置
+# 2.ZRAMのパフォーマンスを最大化するため、swappinessを100に設定
+mkdir -p config/includes.chroot/etc/sysctl.d
+cat << 'EOF' > config/includes.chroot/etc/sysctl.d/99-zram-swappiness.conf
+vm.swappiness=100
+EOF
+echo "zram用のsysctlチューニングを適用しました。"
+
+# 3. 壁紙画像をOS内に配置
 mkdir -p config/includes.chroot/usr/share/backgrounds/
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/radepi-bg.png
 fi
 
-# 3. XFCEの初期設定 (ダークモードと壁紙)
+# 4. XFCEの初期設定 (ダークモードと壁紙)
 XFCE_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
 mkdir -p "$XFCE_CONF_DIR"
 
@@ -61,23 +69,20 @@ cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
 </channel>
 EOF
 
-# 壁紙の設定 (XFCE用)
-cat << 'EOF' > "$XFCE_CONF_DIR/xfce4-desktop.xml"
-<?xml version="1.0" encoding="UTF-8"?>
-<channel name="xfce4-desktop" version="1.0">
-  <property name="backdrop" type="empty">
-    <property name="screen0" type="empty">
-      <property name="monitorAny" type="empty">
-        <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/usr/share/backgrounds/radepi-bg.png"/>
-          <property name="image-style" type="int" value="5"/>
-        </property>
-      </property>
-    </property>
-  </property>
-</channel>
+# 5. 壁紙の強制適用スクリプト (autostart) 
+AUTOSTART_DIR="config/includes.chroot/etc/skel/.config/autostart"
+mkdir -p "$AUTOSTART_DIR"
+cat << 'EOF' > "$AUTOSTART_DIR/set-wallpaper.desktop"
+[Desktop Entry]
+Type=Application
+Exec=sh -c 'sleep 2 && xfconf-query -c xfce4-desktop -m -p /backdrop -R | grep "last-image" | while read -r line; do xfconf-query -c xfce4-desktop -p "$line" -s /usr/share/backgrounds/radepi-bg.png; done'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Set RaDePi Wallpaper
 EOF
-echo "XFCEのダークモードと壁紙設定を適用しました。"
+
+echo "XFCEのダークモードと壁紙強制設定を適用しました。"
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
