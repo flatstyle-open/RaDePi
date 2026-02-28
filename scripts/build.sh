@@ -31,29 +31,53 @@ echo "=== 3. カスタムファイルの適用 ==="
 if [ -d "${BASE_DIR}/config" ]; then
     cp -r "${BASE_DIR}/config"/* config/
 fi
-echo "=== 3.5. 壁紙とデスクトップ設定の適用 ==="
-# 1. 壁紙画像をOS内に配置 (/usr/share/backgrounds/)
+
+echo "=== 3.5. XFCEダークモードとZRAM・壁紙設定 ==="
+# 1. zram-tools の設定 (アルゴリズムに高効率なzstdを指定し、RAMの50%を使用)
+mkdir -p config/includes.chroot/etc/default
+cat << 'EOF' > config/includes.chroot/etc/default/zramswap
+ALGO=zstd
+PERCENT=50
+EOF
+echo "zram-toolsの設定を適用しました。"
+
+# 2. 壁紙画像をOS内に配置
 mkdir -p config/includes.chroot/usr/share/backgrounds/
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/radepi-bg.png
-    echo "壁紙画像をセットしました。"
 fi
 
-# 2. LXDEの初期壁紙設定（/etc/skel に配置）
-mkdir -p config/includes.chroot/etc/skel/.config/pcmanfm/LXDE
-cat << 'EOF' > config/includes.chroot/etc/skel/.config/pcmanfm/LXDE/pcmanfm.conf
-[desktop]
-wallpaper_mode=crop
-wallpaper_common=1
-wallpaper=/usr/share/backgrounds/radepi-bg.png
-bgcolor=#000000
-fgcolor=#ffffff
-show_wm_menu=0
-sort=mtime;ascending;
-show_documents=0
-show_trash=1
-show_mounts=1
+# 3. XFCEの初期設定 (ダークモードと壁紙)
+XFCE_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
+mkdir -p "$XFCE_CONF_DIR"
+
+# テーマをAdwaita-dark（標準搭載のダークテーマ）にする設定
+cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<channel name="xsettings" version="1.0">
+  <property name="Net" type="empty">
+    <property name="ThemeName" type="string" value="Adwaita-dark"/>
+  </property>
+</channel>
 EOF
+
+# 壁紙の設定 (XFCE用)
+cat << 'EOF' > "$XFCE_CONF_DIR/xfce4-desktop.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<channel name="xfce4-desktop" version="1.0">
+  <property name="backdrop" type="empty">
+    <property name="screen0" type="empty">
+      <property name="monitorAny" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/usr/share/backgrounds/radepi-bg.png"/>
+          <property name="image-style" type="int" value="5"/>
+        </property>
+      </property>
+    </property>
+  </property>
+</channel>
+EOF
+echo "XFCEのダークモードと壁紙設定を適用しました。"
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
