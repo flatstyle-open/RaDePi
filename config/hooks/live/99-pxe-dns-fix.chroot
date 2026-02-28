@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+# 起動時に自動実行されるsystemdサービスを作成して、DNSを強制設定します
+cat << 'EOF' > /etc/systemd/system/pxe-dns-fix.service
+[Unit]
+Description=Force DNS setting for PXE Live Boot
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf && echo "nameserver 8.8.4.4" >> /etc/resolv.conf'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 作成したサービスを有効化
+systemctl enable pxe-dns-fix.service
