@@ -1,5 +1,7 @@
 # デスクトップ環境
-task-lxde-desktop
+# task-lxde-desktop
+# task-cinnamon-desktop
+task-xfce-desktop
 
 # ネットワーク・通信機器
 network-manager-gnome
@@ -17,11 +19,11 @@ git
 curl
 wget
 gparted
-# rpi-imager
 gnome-disk-utility
+zram-tools
+gnome-system-monitor
 
 # 教育・プログラミング
-# scratch
 thonny
 geany
 
