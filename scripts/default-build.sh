@@ -31,15 +31,24 @@ echo "=== 3. カスタムファイルの適用 ==="
 if [ -d "${BASE_DIR}/config" ]; then
     cp -r "${BASE_DIR}/config"/* config/
 fi
-echo "=== 3.5. 壁紙とデスクトップ設定の適用 ==="
-# 1. 壁紙画像をOS内に配置 (/usr/share/backgrounds/)
+
+echo "=== 3.5. ZRAM及び壁紙とデスクトップ設定の適用 ==="
+# 1. zram-tools の設定 (アルゴリズムに高効率なzstdを指定し、RAMの50%を使用)
+mkdir -p config/includes.chroot/etc/default
+cat << 'EOF' > config/includes.chroot/etc/default/zramswap
+ALGO=zstd
+PERCENT=50
+EOF
+echo "zram-toolsの設定を適用しました。"
+
+# 2. 壁紙画像をOS内に配置 (/usr/share/backgrounds/)
 mkdir -p config/includes.chroot/usr/share/backgrounds/
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/radepi-bg.png
     echo "壁紙画像をセットしました。"
 fi
 
-# 2. LXDEの初期壁紙設定（/etc/skel に配置）
+# 3. LXDEの初期壁紙設定（/etc/skel に配置）
 mkdir -p config/includes.chroot/etc/skel/.config/pcmanfm/LXDE
 cat << 'EOF' > config/includes.chroot/etc/skel/.config/pcmanfm/LXDE/pcmanfm.conf
 [desktop]
