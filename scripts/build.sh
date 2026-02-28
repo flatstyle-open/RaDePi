@@ -129,6 +129,7 @@ cat << 'EOF' > config/includes.chroot/etc/samba/smb.conf
 [global]
    workgroup = WORKGROUP
    server string = RaDePi OS Share
+   netbios name = RADEPI
    security = user
    map to guest = Bad User
    guest account = nobody
