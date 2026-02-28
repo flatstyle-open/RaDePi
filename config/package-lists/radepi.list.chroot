@@ -3,6 +3,12 @@
 # task-cinnamon-desktop
 task-xfce-desktop
 
+# 日本語環境・日本語入力
+fonts-noto-cjk
+fcitx5
+fcitx5-mozc
+im-config
+
 # ネットワーク・通信機器
 network-manager-gnome
 bluez
