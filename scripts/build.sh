@@ -117,8 +117,8 @@ echo "SSHのパスワードログイン許可設定を適用しました。"
 # 8. ネットワーク共有フォルダの構築（パスワードなしの公開共有）
 # ① 共有用の実体ディレクトリを作成し、所有者を「nobody（ゲスト）」にする
 mkdir -p config/includes.chroot/srv/samba/share
-chown -R nobody:nogroup config/includes.chroot/srv/samba/share
-chmod -R 777 config/includes.chroot/srv/samba/share
+sudo chown -R nobody:nogroup config/includes.chroot/srv/samba/share
+sudo chmod -R 777 config/includes.chroot/srv/samba/share
 
 # ② 新規ユーザーの雛形に「share」という名前でショートカットを置く
 mkdir -p config/includes.chroot/etc/skel
