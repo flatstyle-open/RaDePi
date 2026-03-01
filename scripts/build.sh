@@ -96,7 +96,14 @@ cat << 'EOF' > "$XFCE_CONF_DIR/xsettings.xml"
 EOF
 echo "XFCEのダークモード設定を適用しました。"
 
-# 6. XFCEの初期パネル設定
+# 6. アプリケーションメニュー用のカスタムアイコンを配置
+if [ -f "${BASE_DIR}/image/RaDePi-menu.png" ]; then
+    mkdir -p config/includes.chroot/usr/share/pixmaps
+    cp "${BASE_DIR}/image/RaDePi-menu.png" config/includes.chroot/usr/share/pixmaps/radepi-menu.png
+    echo "メニュー用カスタムアイコンを配置しました。"
+fi
+
+# 7. XFCEの初期パネル設定
 XFCE_PANEL_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
 if [ -f "${BASE_DIR}/custom-config/xfce4-panel.xml" ]; then
     mkdir -p "$XFCE_PANEL_CONF_DIR"  # ← ★念のための安全策
@@ -106,20 +113,13 @@ else
     echo "カスタムパネル設定が見つからないため、標準パネルを適用します。"
 fi
 
-# 7. SSHのパスワードログイン許可設定
+# 8. SSHのパスワードログイン許可設定
 SSH_CONF_DIR="config/includes.chroot/etc/ssh/sshd_config.d"
 mkdir -p "$SSH_CONF_DIR"
 cat << 'EOF' > "$SSH_CONF_DIR/99-radepi-ssh.conf"
 PasswordAuthentication yes
 EOF
 echo "SSHのパスワードログイン許可設定を適用しました。"
-
-# 8. アプリケーションメニュー用のカスタムアイコンを配置
-if [ -f "${BASE_DIR}/image/RaDePi-menu.png" ]; then
-    mkdir -p config/includes.chroot/usr/share/pixmaps
-    cp "${BASE_DIR}/image/RaDePi-menu.png" config/includes.chroot/usr/share/pixmaps/radepi-menu.png
-    echo "メニュー用カスタムアイコンを配置しました。"
-fi
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
