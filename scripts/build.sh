@@ -115,15 +115,16 @@ EOF
 echo "SSHのパスワードログイン許可設定を適用しました。"
 
 # 8. ネットワーク共有フォルダの構築（パスワードなしの公開共有）
-# ① 共有用の実体ディレクトリを作成し、誰でもフルアクセス可能（777）にする
+# ① 共有用の実体ディレクトリを作成し、所有者を「nobody（ゲスト）」にする
 mkdir -p config/includes.chroot/srv/samba/share
-chmod 777 config/includes.chroot/srv/samba/share
+chown -R nobody:nogroup config/includes.chroot/srv/samba/share
+chmod -R 777 config/includes.chroot/srv/samba/share
 
 # ② 新規ユーザーの雛形に「share」という名前でショートカットを置く
 mkdir -p config/includes.chroot/etc/skel
 ln -s /srv/samba/share config/includes.chroot/etc/skel/share
 
-# ③ Sambaの設定ファイル(smb.conf)を上書きして、パスワードなしGuestアクセスを許可する
+# ③ Sambaの設定ファイル(smb.conf)を上書きして、完全公開アクセスを許可する
 mkdir -p config/includes.chroot/etc/samba
 cat << 'EOF' > config/includes.chroot/etc/samba/smb.conf
 [global]
@@ -139,11 +140,14 @@ cat << 'EOF' > config/includes.chroot/etc/samba/smb.conf
    path = /srv/samba/share
    browseable = yes
    guest ok = yes
+   guest only = yes
+   force user = nobody
+   force group = nogroup
    read only = no
    create mask = 0777
    directory mask = 0777
 EOF
-echo "Sambaのパスワードなし共有設定を適用しました。"
+echo "Sambaのパスワードなし共有設定（完全公開版）を適用しました。"
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
