@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+echo "=== VSCodiumのインストールを開始します ==="
+
+# 必要なパッケージ（wget, gpgなど）の確認
+apt-get update
+apt-get install -y wget gpg apt-transport-https
+
+# VSCodiumの公式GPGキーをシステムに登録
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg 2>/dev/null
+
+# VSCodiumの公式リポジトリを追加
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | tee /etc/apt/sources.list.d/vscodium.list
+
+# パッケージリストを更新してVSCodiumをインストール
+apt-get update
+apt-get install -y codium
+
+echo "=== VSCodiumのインストールが完了しました ==="
