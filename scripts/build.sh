@@ -114,6 +114,13 @@ PasswordAuthentication yes
 EOF
 echo "SSHのパスワードログイン許可設定を適用しました。"
 
+# 8. アプリケーションメニュー用のカスタムアイコンを配置
+if [ -f "${BASE_DIR}/image/RaDePi-menu.png" ]; then
+    mkdir -p config/includes.chroot/usr/share/pixmaps
+    cp "${BASE_DIR}/image/RaDePi-menu.png" config/includes.chroot/usr/share/pixmaps/radepi-menu.png
+    echo "メニュー用カスタムアイコンを配置しました。"
+fi
+
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
 
