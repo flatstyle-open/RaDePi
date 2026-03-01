@@ -7,7 +7,7 @@ task-xfce-desktop
 gvfs-backends
 smbclient
 samba
-# wsdd
+wsdd2
 avahi-daemon
 
 # 日本語環境・日本語入力
