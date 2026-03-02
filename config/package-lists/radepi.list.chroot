@@ -49,6 +49,11 @@ inkscape
 arduino
 kicad
 
+# システム・ユーティリティ
+hardinfo
+cpu-x
+fastfetch
+
 # 一般アプリケーション
 chromium
 firefox-esr
