@@ -27,6 +27,7 @@ blueman
 openssh-server
 x11vnc
 remmina
+filezilla
 
 # システム管理・基本ツール
 sudo
