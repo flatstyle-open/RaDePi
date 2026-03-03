@@ -119,6 +119,7 @@ mkdir -p "$SSH_CONF_DIR"
 cat << 'EOF' > "$SSH_CONF_DIR/99-radepi-ssh.conf"
 PasswordAuthentication yes
 EOF
+chmod 644 "$SSH_CONF_DIR/99-radepi-ssh.conf"
 echo "SSHのパスワードログイン許可設定を適用しました。"
 
 echo "=== 4. ISOビルド実行 ==="
