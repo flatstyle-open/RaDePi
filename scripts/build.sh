@@ -122,6 +122,40 @@ EOF
 chmod 644 "$SSH_CONF_DIR/99-radepi-ssh.conf"
 echo "SSHのパスワードログイン許可設定を適用しました。"
 
+# 9. ユーザー情報とパスワードの完全ハードコード
+# ① live-configの内部設定ファイルに直接書き込む（ブートパラメータより優先されます）
+LIVE_CONF_DIR="config/includes.chroot/etc/live/config.conf.d"
+mkdir -p "$LIVE_CONF_DIR"
+cat << 'EOF' > "$LIVE_CONF_DIR/99-radepi.conf"
+LIVE_USERNAME="radepi"
+LIVE_USER_FULLNAME="RaDePi"
+LIVE_HOSTNAME="radepi"
+LIVE_PASSWORD="live"
+EOF
+
+# ② 起動時に強制的にパスワードを「live」に再設定（※Live起動時のみ実行させる安全設計）
+SYSTEMD_DIR="config/includes.chroot/etc/systemd/system"
+mkdir -p "$SYSTEMD_DIR"
+cat << 'EOF' > "$SYSTEMD_DIR/radepi-password-fix.service"
+[Unit]
+Description=Force set radepi password for SSH
+After=multi-user.target
+ConditionKernelCommandLine=boot=live  # ← ★ここを追加！Live起動時のみ動かす魔法の条件
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo "radepi:live" | chpasswd'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 作成したサービスをOS起動時に自動実行させるためのリンク
+mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
+ln -s /etc/systemd/system/radepi-password-fix.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-password-fix.service
+echo "Liveユーザー:radepi パスワード:live ホストネーム:radepi.local をハードコードしました。"
+
+
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
 
