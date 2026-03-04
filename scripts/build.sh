@@ -103,12 +103,21 @@ if [ -f "${BASE_DIR}/image/RaDePi-menu.png" ]; then
     echo "メニュー用カスタムアイコンを配置しました。"
 fi
 
-# 7. XFCEの初期パネル設定
+# 7. XFCEの初期パネル設定（レイアウトと実体の完全コピー）
 XFCE_PANEL_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
+XFCE_PANEL_LAUNCHER_DIR="config/includes.chroot/etc/skel/.config/xfce4/panel"
+
+# ① レイアウト（XML）のコピー
 if [ -f "${BASE_DIR}/custom-config/xfce4-panel.xml" ]; then
-    mkdir -p "$XFCE_PANEL_CONF_DIR"  # ← ★念のための安全策
+    mkdir -p "$XFCE_PANEL_CONF_DIR"
     cp "${BASE_DIR}/custom-config/xfce4-panel.xml" "$XFCE_PANEL_CONF_DIR/xfce4-panel.xml"
-    echo "XFCEの初期パネル設定を適用しました。"
+fi
+
+# ② ランチャー実体（.desktopファイル群）のコピー
+if [ -d "${BASE_DIR}/custom-config/panel" ]; then
+    mkdir -p "$XFCE_PANEL_LAUNCHER_DIR"
+    cp -r "${BASE_DIR}/custom-config/panel/"* "$XFCE_PANEL_LAUNCHER_DIR/"
+    echo "XFCEの初期パネル設定（ランチャー含む）を適用しました。"
 else
     echo "カスタムパネル設定が見つからないため、標準パネルを適用します。"
 fi
