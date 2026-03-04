@@ -1,0 +1,35 @@
+[Desktop Entry]
+Version=1.0
+Name=Claws Mail
+GenericName=E-mail client
+GenericName[ja]=Eメールクライアント
+Exec=claws-mail %u
+Icon=claws-mail
+Categories=Network;Email;
+Keywords=lightweight;fast;gui;extensible;plugin;pop;pop3;imap;imap4;nntp;news;
+Comment=Lightweight and Fast GTK based Mail Client
+Comment[ja]=軽量で早いGTKベースのEメールクライアント
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=application/mbox;x-scheme-handler/mailto;
+X-Info=Claws Mail
+X-AppStream-Ignore=true
+Actions=GetMail;ComposeMail;SendFile;ImportMbox;
+X-XFCE-Source=file:///usr/share/applications/claws-mail.desktop
+
+[Desktop Action GetMail]
+Exec=claws-mail --receive-all
+Name=Get Mail
+
+[Desktop Action ComposeMail]
+Exec=claws-mail --compose
+Name=Email...
+
+[Desktop Action SendFile]
+Exec=claws-mail --compose --attach %f
+Name=Send file...
+
+[Desktop Action ImportMbox]
+Exec=claws-mail --import-mbox %f
+Name=Import mbox file...

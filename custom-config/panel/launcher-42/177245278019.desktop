@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name[ja]=ディスク
+Name=Disks
+Comment[ja]=ドライブとメディアを管理します
+Comment=Manage Drives and Media
+Keywords[ja]=disk;drive;volume;harddisk;hdd;disc;cdrom;dvd;partition;iso;image;backup;restore;benchmark;raid;luks;encryption;S.M.A.R.T.;smart;ドライブ;ボリューム;ハードディスク;パーティション;イメージ;バックアップ;リストア;復旧;修復;ベンチマーク;暗号化;
+Keywords=disk;drive;volume;harddisk;hdd;disc;cdrom;dvd;partition;iso;image;backup;restore;benchmark;raid;luks;encryption;S.M.A.R.T.;smart;
+Exec=gnome-disks
+Icon=org.gnome.DiskUtility
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;X-GNOME-Utilities;
+DBusActivatable=true
+X-Purism-FormFactor=Workstation;Mobile;
+X-GNOME-UsesNotifications=true
+X-XFCE-Source=file:///usr/share/applications/org.gnome.DiskUtility.desktop
