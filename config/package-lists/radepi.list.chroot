@@ -3,6 +3,10 @@
 # task-cinnamon-desktop
 task-xfce-desktop
 
+# 日本語デスクトップ環境の共通翻訳パッケージ
+task-japanese
+task-japanese-desktop
+
 # ネットワークファイル共有サポート
 gvfs-backends
 smbclient
