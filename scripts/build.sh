@@ -164,6 +164,29 @@ mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
 ln -s /etc/systemd/system/radepi-password-fix.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-password-fix.service
 echo "Liveユーザー:radepi パスワード:live ホストネーム:radepi.local をハードコードしました。"
 
+# 10. デスクトップにインストーラのアイコンを配置する
+# ※日本語環境で起動するため、フォルダ名は「デスクトップ」になります
+DESKTOP_DIR="config/includes.chroot/etc/skel/デスクトップ"
+mkdir -p "$DESKTOP_DIR"
+
+cat << 'EOF' > "$DESKTOP_DIR/install-radepi.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=RaDePiをHDDにインストール
+Comment=Install RaDePi permanently to your hard disk
+Exec=sudo calamares
+Icon=drive-harddisk
+Terminal=false
+StartupNotify=true
+Categories=System;
+EOF
+
+# アイコンに実行権限を付与（これがないと警告が出ます）
+chmod +x "$DESKTOP_DIR/install-radepi.desktop"
+
+echo "デスクトップにインストーラのショートカットを配置しました。"
+
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
