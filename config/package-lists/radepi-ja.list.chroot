@@ -1,1 +1,74 @@
-null
+# デスクトップ環境
+# task-lxde-desktop
+# task-cinnamon-desktop
+task-xfce-desktop
+
+# ネットワークファイル共有サポート
+gvfs-backends
+smbclient
+samba
+wsdd2
+avahi-daemon
+
+# 日本語環境・日本語入力
+fonts-noto-cjk
+fcitx5
+fcitx5-mozc
+im-config
+
+# 日本語デスクトップ環境の共通翻訳パッケージ
+task-japanese
+task-japanese-desktop
+
+# ネットワーク・通信機器
+network-manager-gnome
+network-manager-openvpn-gnome
+network-manager-l2tp-gnome
+bluez
+blueman
+
+# リモートアクセス
+openssh-server
+x11vnc
+remmina
+filezilla
+
+# システム管理・基本ツール
+sudo
+git
+curl
+wget
+gparted
+gnome-disk-utility
+zram-tools
+gnome-system-monitor
+
+# 教育・プログラミング
+thonny
+geany
+
+# 3D・ものづくり・デザイン
+freecad
+blender
+inkscape
+arduino
+kicad
+
+# システム・ユーティリティ
+hardinfo
+cpu-x
+fastfetch
+
+# 一般アプリケーション
+chromium
+firefox-esr
+firefox-esr-l10n-ja
+libreoffice
+claws-mail
+claws-mail-i18n
+# thunderbird
+# thunderbird-l10n-ja
+
+# インストーラ
+calamares
+calamares-settings-debian
