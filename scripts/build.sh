@@ -57,6 +57,17 @@ if [ -d "${BASE_DIR}/config" ]; then
     cp -r "${BASE_DIR}/config"/* config/
 fi
 
+# ★★★ パッケージリストの自動切り替え ★★★
+if [ "$BUILD_LANG" = "ja" ]; then
+    # 日本語ビルド時は、英語版のリストを削除する
+    rm -f config/package-lists/radepi-en.list.chroot
+    echo "日本語用パッケージリスト (radepi-ja.list.chroot) を適用します。"
+else
+    # 英語ビルド時は、日本語版のリストを削除する
+    rm -f config/package-lists/radepi-ja.list.chroot
+    echo "英語用パッケージリスト (radepi-en.list.chroot) を適用します。"
+fi
+
 echo "=== 3.5. XFCEダークモードとZRAM・壁紙設定 ==="
 # 1. zram-tools の設定
 mkdir -p config/includes.chroot/etc/default
