@@ -3,10 +3,6 @@
 # task-cinnamon-desktop
 task-xfce-desktop
 
-# 日本語デスクトップ環境の共通翻訳パッケージ
-task-japanese
-task-japanese-desktop
-
 # ネットワークファイル共有サポート
 gvfs-backends
 smbclient
@@ -19,6 +15,10 @@ fonts-noto-cjk
 fcitx5
 fcitx5-mozc
 im-config
+
+# 日本語デスクトップ環境の共通翻訳パッケージ
+task-japanese
+task-japanese-desktop
 
 # ネットワーク・通信機器
 network-manager-gnome
@@ -62,6 +62,7 @@ fastfetch
 # 一般アプリケーション
 chromium
 firefox-esr
+firefox-esr-l10n-ja
 libreoffice
 claws-mail
 claws-mail-i18n
