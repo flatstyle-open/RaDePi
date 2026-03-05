@@ -63,3 +63,7 @@ claws-mail
 claws-mail-i18n
 # thunderbird
 # thunderbird-l10n-ja
+
+# インストーラ
+calamares
+calamares-settings-debian
