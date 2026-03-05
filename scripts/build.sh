@@ -21,12 +21,14 @@ if [ "$BUILD_LANG" = "ja" ]; then
     DESKTOP_DIR_NAME="デスクトップ"
     INSTALLER_NAME="RaDePiをHDDにインストール"
     INSTALLER_COMMENT="RaDePiをハードディスクにインストールします"
+    SCRATCH_COMMENT="プログラミングでゲームやアニメを作ろう"
 else
     echo "=== 英語(en)向けビルドを開始します ==="
     BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=UTC"
     DESKTOP_DIR_NAME="Desktop"
     INSTALLER_NAME="Install RaDePi to HDD"
     INSTALLER_COMMENT="Install RaDePi permanently to your hard disk"
+    SCRATCH_COMMENT="Create stories, games, and animations"
 fi
 # --------------------------
 
@@ -189,6 +191,25 @@ StartupNotify=true
 Categories=System;
 EOF
 chmod +x "$DESKTOP_DIR/install-radepi.desktop"
+
+# 10.5 Scratch（Web版）へのショートカットをデスクトップに配置
+cat << EOF > "$DESKTOP_DIR/scratch.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Scratch
+Comment=${SCRATCH_COMMENT}
+Exec=x-www-browser https://scratch.mit.edu/
+Icon=applications-internet
+Terminal=false
+StartupNotify=false
+Categories=Education;
+EOF
+
+# アイコンに実行権限を付与
+chmod +x "$DESKTOP_DIR/scratch.desktop"
+
+echo "デスクトップにScratchのショートカットを配置しました。"
 
 # 11. VSCodiumの日本語化拡張機能（※日本語ビルドの時だけ仕込みます）
 if [ "$BUILD_LANG" = "ja" ]; then
