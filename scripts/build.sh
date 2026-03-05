@@ -187,6 +187,20 @@ chmod +x "$DESKTOP_DIR/install-radepi.desktop"
 
 echo "デスクトップにインストーラのショートカットを配置しました。"
 
+# 11. VSCodiumの日本語化拡張機能を初回起動時に自動インストールする仕掛け
+AUTOSTART_DIR="config/includes.chroot/etc/skel/.config/autostart"
+mkdir -p "$AUTOSTART_DIR"
+
+cat << 'EOF' > "$AUTOSTART_DIR/vscodium-ja.desktop"
+[Desktop Entry]
+Type=Application
+Name=VSCodium Japanese Setup
+Exec=sh -c 'codium --install-extension MS-CEINTL.vscode-language-pack-ja && rm -f ~/.config/autostart/vscodium-ja.desktop'
+Terminal=false
+StartupNotify=false
+EOF
+
+echo "VSCodiumの日本語化自動実行スクリプトを配置しました。"
 
 echo "=== 4. ISOビルド実行 ==="
 sudo lb build
