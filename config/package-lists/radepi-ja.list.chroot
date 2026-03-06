@@ -60,6 +60,12 @@ gimp-help-ja
 krita
 krita-l10n
 
+# 音楽・音声制作 (DTM / DAW)
+lmms
+hydrogen
+musescore
+audacity
+
 # システム・ユーティリティ
 hardinfo
 cpu-x
