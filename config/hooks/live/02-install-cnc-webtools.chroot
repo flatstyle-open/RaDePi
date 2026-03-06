@@ -1,24 +1,14 @@
 #!/bin/sh
 set -e
 
-echo "=== CNCjs & LaserWeb (Node.js環境) のインストールを開始します ==="
+echo "=== CNCjs (Node.js環境) のインストールを開始します ==="
 
-# 1. Debian標準のリポジトリからNode.js、npm、gitをインストール
+# 1. Debian標準のリポジトリからNode.js、npmをインストール
 apt-get update
-apt-get install -y nodejs npm git
+apt-get install -y nodejs npm
 
-# 2. CNCjsのインストール (こちらはnpmに存在するのでOK)
+# 2. CNCjsのインストール
 echo "CNCjsをインストール中..."
 npm install -g cncjs
 
-# 3. LaserWebサーバーのインストール (GitHubから直接/optへ取得)
-echo "LaserWebサーバーをインストール中..."
-mkdir -p /opt
-cd /opt
-# もし再ビルドで既にフォルダがあれば削除しておく
-rm -rf lw.comm-server
-git clone https://github.com/LaserWeb/lw.comm-server.git
-cd lw.comm-server
-npm install
-
-echo "=== CNCjs & LaserWeb のインストールが完了しました ==="
+echo "=== CNCjs のインストールが完了しました ==="
