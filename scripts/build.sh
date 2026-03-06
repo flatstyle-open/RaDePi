@@ -18,7 +18,6 @@ WORK_DIR="${BASE_DIR}/work"
 if [ "$BUILD_LANG" = "ja" ]; then
     echo "=== 日本語(ja)向けビルドを開始します ==="
     BOOT_LOCALE="locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo"
-    DESKTOP_DIR_NAME="デスクトップ"
     INSTALLER_NAME="RaDePiをHDDにインストール"
     INSTALLER_COMMENT="RaDePiをハードディスクにインストールします"
     SCRATCH_COMMENT="プログラミングでゲームやアニメを作ろう"
@@ -28,7 +27,6 @@ if [ "$BUILD_LANG" = "ja" ]; then
 else
     echo "=== 英語(en)向けビルドを開始します ==="
     BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=UTC"
-    DESKTOP_DIR_NAME="Desktop"
     INSTALLER_NAME="Install RaDePi to HDD"
     INSTALLER_COMMENT="Install RaDePi permanently to your hard disk"
     SCRATCH_COMMENT="Create stories, games, and animations"
@@ -49,7 +47,6 @@ echo "=== 1. クリーンアップ ==="
 sudo lb clean || true
 
 echo "=== 2. Configの生成 ==="
-# ここで変数を読み込んで、言語とキーボードを動的に切り替えます
 lb config noauto \
     --distribution trixie \
     --architecture amd64 \
@@ -67,11 +64,9 @@ fi
 
 # ★★★ パッケージリストの自動切り替え ★★★
 if [ "$BUILD_LANG" = "ja" ]; then
-    # 日本語ビルド時は、英語版のリストを削除する
     rm -f config/package-lists/radepi-en.list.chroot
     echo "日本語用パッケージリスト (radepi-ja.list.chroot) を適用します。"
 else
-    # 英語ビルド時は、日本語版のリストを削除する
     rm -f config/package-lists/radepi-ja.list.chroot
     echo "英語用パッケージリスト (radepi-en.list.chroot) を適用します。"
 fi
@@ -186,10 +181,15 @@ EOF
 mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
 ln -s /etc/systemd/system/radepi-password-fix.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-password-fix.service
 
-# 10. インストーラアイコンの配置（言語によってフォルダ名と名前が変化します）
-DESKTOP_DIR="config/includes.chroot/etc/skel/${DESKTOP_DIR_NAME}"
-mkdir -p "$DESKTOP_DIR"
+# 10. カスタムアプリのショートカット配置
+DESKTOP_DIR="config/includes.chroot/etc/skel/Desktop"
+# スタートメニューにも表示させるためのディレクトリ
+APP_DIR="config/includes.chroot/usr/share/applications"
 
+mkdir -p "$DESKTOP_DIR"
+mkdir -p "$APP_DIR"
+
+# インストーラアイコン
 cat << EOF > "$DESKTOP_DIR/install-radepi.desktop"
 [Desktop Entry]
 Version=1.0
@@ -203,8 +203,9 @@ StartupNotify=true
 Categories=System;
 EOF
 chmod +x "$DESKTOP_DIR/install-radepi.desktop"
+cp "$DESKTOP_DIR/install-radepi.desktop" "$APP_DIR/"
 
-# Scratch（Web版）へのショートカットをデスクトップに配置
+# Scratch（Web版）へのショートカット
 cat << EOF > "$DESKTOP_DIR/scratch.desktop"
 [Desktop Entry]
 Version=1.0
@@ -217,45 +218,40 @@ Terminal=false
 StartupNotify=false
 Categories=Education;
 EOF
-
-# アイコンに実行権限を付与
 chmod +x "$DESKTOP_DIR/scratch.desktop"
+cp "$DESKTOP_DIR/scratch.desktop" "$APP_DIR/"
 
-echo "デスクトップにScratchのショートカットを配置しました。"
-
-# CNCjsの起動ショートカットをデスクトップに配置
+# CNCjsへのショートカット
 cat << EOF > "$DESKTOP_DIR/cncjs.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=CNCjs
 Comment=${CNCJS_COMMENT}
-# ターミナルでcncjsを起動し、数秒待ってからブラウザでアクセスするコマンド
 Exec=sh -c 'x-terminal-emulator -e cncjs & sleep 3 && x-www-browser http://localhost:8000'
 Icon=applications-engineering
 Terminal=false
 Categories=Engineering;
 EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
+cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
-# LaserWebの起動ショートカットをデスクトップに配置
+# LaserWebへのショートカット
 cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=LaserWeb
 Comment=${LASERWEB_COMMENT}
-# ターミナルでlw.comm-serverを起動し、数秒待ってからブラウザでアクセスするコマンド
 Exec=sh -c 'x-terminal-emulator -e lw.comm-server & sleep 3 && x-www-browser http://localhost:8000'
 Icon=applications-engineering
 Terminal=false
 Categories=Engineering;
 EOF
 chmod +x "$DESKTOP_DIR/laserweb.desktop"
+cp "$DESKTOP_DIR/laserweb.desktop" "$APP_DIR/"
 
-echo "デスクトップにCNCjsとLaserWebのショートカットを配置しました。"
-
-# Blender (旧型PC用) のショートカットを配置
+# Blender (旧型PC用) へのショートカット
 cat << EOF > "$DESKTOP_DIR/blender-legacy.desktop"
 [Desktop Entry]
 Version=1.0
@@ -268,8 +264,11 @@ Terminal=false
 Categories=Graphics;3DGraphics;
 EOF
 chmod +x "$DESKTOP_DIR/blender-legacy.desktop"
+cp "$DESKTOP_DIR/blender-legacy.desktop" "$APP_DIR/"
 
-# 11. VSCodiumの日本語化拡張機能（※日本語ビルドの時だけ仕込みます）
+echo "デスクトップとアプリケーションメニューにショートカットを配置しました。"
+
+# 11. VSCodiumの日本語化拡張機能
 if [ "$BUILD_LANG" = "ja" ]; then
     AUTOSTART_DIR="config/includes.chroot/etc/skel/.config/autostart"
     mkdir -p "$AUTOSTART_DIR"
