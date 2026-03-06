@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+echo "=== 旧型PC向け Blender 2.83 LTS の導入を開始します ==="
+
+# 1. 配置用のディレクトリを作成
+mkdir -p /opt/blender-legacy
+cd /opt/blender-legacy
+
+# 2. 公式サーバーからポータブル版（tar.xz）を直接 wget でダウンロード
+echo "Blender 2.83 LTS をダウンロード中... (少し時間がかかります)"
+wget https://download.blender.org/release/Blender2.83/blender-2.83.20-linux-x64.tar.xz -O blender-legacy.tar.xz
+
+# 3. 展開してゴミを削除
+echo "ファイルを展開中..."
+tar -xf blender-legacy.tar.xz --strip-components=1
+rm blender-legacy.tar.xz
+
+echo "=== Blender 2.83 LTS の配置が完了しました ==="
