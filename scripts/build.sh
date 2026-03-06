@@ -87,23 +87,23 @@ EOF
 
 # 3. 壁紙画像をOS内に配置
 mkdir -p config/includes.chroot/usr/share/backgrounds/xfce
-if [ -f "${BASE_DIR}/image/RaDePi-bg.jpg" ]; then
-    cp "${BASE_DIR}/image/RaDePi-bg.jpg" config/includes.chroot/usr/share/backgrounds/xfce/xfce-x.svg
+if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/xfce/xfce-x.svg
 fi
 
 # 4. システム背景の配置
 TARGET_DIR="config/includes.chroot/usr/share/images/desktop-base"
 mkdir -p "$TARGET_DIR"
 
-if [ -f "${BASE_DIR}/image/RaDePi-bg.jpg" ]; then
-    cp "${BASE_DIR}/image/RaDePi-bg.jpg" "$TARGET_DIR/default"
-    cp "${BASE_DIR}/image/RaDePi-bg.jpg" "$TARGET_DIR/desktop-background"
+if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-bg.png" "$TARGET_DIR/default"
+    cp "${BASE_DIR}/image/RaDePi-bg.png" "$TARGET_DIR/desktop-background"
 fi
-if [ -f "${BASE_DIR}/image/RaDePi-login-bg.jpg" ]; then
-    cp "${BASE_DIR}/image/RaDePi-login-bg.jpg" "$TARGET_DIR/login-background.svg"
+if [ -f "${BASE_DIR}/image/RaDePi-login-bg.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-login-bg.png" "$TARGET_DIR/login-background.svg"
 fi
-if [ -f "${BASE_DIR}/image/RaDePi-grub.jpg" ]; then
-    cp "${BASE_DIR}/image/RaDePi-grub.jpg" "$TARGET_DIR/desktop-grub.png"
+if [ -f "${BASE_DIR}/image/RaDePi-grub.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-grub.png" "$TARGET_DIR/desktop-grub.png"
 fi
 
 # 5. XFCEの初期設定 (ダークモード)
