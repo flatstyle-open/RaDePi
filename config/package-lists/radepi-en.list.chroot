@@ -50,9 +50,16 @@ geany
 # 3D・ものづくり・デザイン
 freecad
 blender
-inkscape
 arduino
 kicad
+
+# 画像編集・イラスト・デザイン (2D)
+inkscape
+gimp
+# gimp-help-ja
+krita
+# krita-l10n
+pinta
 
 # システム・ユーティリティ
 hardinfo
