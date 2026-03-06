@@ -217,6 +217,39 @@ chmod +x "$DESKTOP_DIR/scratch.desktop"
 
 echo "デスクトップにScratchのショートカットを配置しました。"
 
+# 10.6 CNCjsとLaserWebの起動ショートカットをデスクトップに配置
+# CNCjs用ショートカット
+cat << EOF > "$DESKTOP_DIR/cncjs.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=CNCjs
+Comment=高機能CNCコントローラー
+# ターミナルでcncjsを起動し、数秒待ってからブラウザでアクセスするコマンド
+Exec=sh -c 'x-terminal-emulator -e cncjs & sleep 3 && x-www-browser http://localhost:8000'
+Icon=applications-engineering
+Terminal=false
+Categories=Engineering;
+EOF
+chmod +x "$DESKTOP_DIR/cncjs.desktop"
+
+# LaserWeb用ショートカット
+cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=LaserWeb
+Comment=オープンソース・レーザーカッター制御
+# ターミナルでlw.comm-serverを起動し、数秒待ってからブラウザでアクセスするコマンド
+Exec=sh -c 'x-terminal-emulator -e lw.comm-server & sleep 3 && x-www-browser http://localhost:8000'
+Icon=applications-engineering
+Terminal=false
+Categories=Engineering;
+EOF
+chmod +x "$DESKTOP_DIR/laserweb.desktop"
+
+echo "デスクトップにCNCjsとLaserWebのショートカットを配置しました。"
+
 # 11. VSCodiumの日本語化拡張機能（※日本語ビルドの時だけ仕込みます）
 if [ "$BUILD_LANG" = "ja" ]; then
     AUTOSTART_DIR="config/includes.chroot/etc/skel/.config/autostart"
