@@ -235,21 +235,6 @@ EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
-# LaserWebへのショートカット
-cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=LaserWeb
-Comment=${LASERWEB_COMMENT}
-Exec=sh -c 'x-terminal-emulator -e sh -c "cd /opt/lw.comm-server && node server.js" & sleep 3 && x-www-browser http://localhost:8000'
-Icon=applications-engineering
-Terminal=false
-Categories=Engineering;
-EOF
-chmod +x "$DESKTOP_DIR/laserweb.desktop"
-cp "$DESKTOP_DIR/laserweb.desktop" "$APP_DIR/"
-
 # Blender (旧型PC用) へのショートカット
 cat << EOF > "$DESKTOP_DIR/blender-legacy.desktop"
 [Desktop Entry]
