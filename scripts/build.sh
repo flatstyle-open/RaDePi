@@ -183,7 +183,6 @@ ln -s /etc/systemd/system/radepi-password-fix.service config/includes.chroot/etc
 
 # 10. カスタムアプリのショートカット配置
 DESKTOP_DIR="config/includes.chroot/etc/skel/Desktop"
-# スタートメニューにも表示させるためのディレクトリ
 APP_DIR="config/includes.chroot/usr/share/applications"
 
 mkdir -p "$DESKTOP_DIR"
@@ -236,14 +235,14 @@ EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
-# LaserWebへのショートカット
+# LaserWebへのショートカット (★ここを修正しました)
 cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=LaserWeb
 Comment=${LASERWEB_COMMENT}
-Exec=sh -c 'x-terminal-emulator -e lw.comm-server & sleep 3 && x-www-browser http://localhost:8000'
+Exec=sh -c 'x-terminal-emulator -e sh -c "cd /opt/lw.comm-server && node server.js" & sleep 3 && x-www-browser http://localhost:8000'
 Icon=applications-engineering
 Terminal=false
 Categories=Engineering;
