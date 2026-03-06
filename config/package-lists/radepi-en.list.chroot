@@ -54,7 +54,6 @@ arduino
 kicad
 
 # デジタルファブリケーション (3Dプリンター / レーザー / CNC)
-cura
 prusa-slicer
 librecad
 bcnc
