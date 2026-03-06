@@ -1,14 +1,31 @@
 #!/bin/sh
 set -e
 
-echo "=== CNCjs (Node.js環境) のインストールを開始します ==="
+echo "=== CNCjs & Meerk40t のインストールを開始します ==="
 
-# 1. Debian標準のリポジトリからNode.js、npmをインストール
+# 1. 必要なパッケージのインストール
 apt-get update
-apt-get install -y nodejs npm
+apt-get install -y nodejs npm curl wget ca-certificates
 
-# 2. CNCjsのインストール
+# 2. CNCjsのインストール (Node.js環境)
 echo "CNCjsをインストール中..."
 npm install -g cncjs
 
-echo "=== CNCjs のインストールが完了しました ==="
+# 3. Meerk40tのインストール (GitHubから最新のLinux版を自動取得)
+echo "Meerk40tをインストール中..."
+mkdir -p /opt/meerk40t
+cd /opt/meerk40t
+
+# GitHub APIを使って、最新リリースのLinux用バイナリURLを自動検索して取得
+MEERK40T_URL=$(curl -s https://api.github.com/repos/meerk40t/meerk40t/releases/latest | grep "browser_download_url" | grep -i "linux" | grep -vi "minimal" | head -n 1 | cut -d '"' -f 4)
+
+if [ -n "$MEERK40T_URL" ]; then
+    echo "Meerk40tのダウンロードURL: $MEERK40T_URL"
+    wget -O meerk40t-linux "$MEERK40T_URL"
+    chmod +x meerk40t-linux
+else
+    echo "エラー: Meerk40tのダウンロードURLが見つかりませんでした。"
+    exit 1
+fi
+
+echo "=== CNCjs & Meerk40t のインストールが完了しました ==="
