@@ -22,6 +22,9 @@ if [ "$BUILD_LANG" = "ja" ]; then
     INSTALLER_NAME="RaDePiをHDDにインストール"
     INSTALLER_COMMENT="RaDePiをハードディスクにインストールします"
     SCRATCH_COMMENT="プログラミングでゲームやアニメを作ろう"
+    CNCJS_COMMENT="高機能CNCコントローラー"
+    LASERWEB_COMMENT="オープンソース・レーザーカッター制御"
+    BLENDER_LEGACY_COMMENT="古いPC向けの軽量な3Dモデリングソフト (v2.83)"
 else
     echo "=== 英語(en)向けビルドを開始します ==="
     BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=UTC"
@@ -29,6 +32,9 @@ else
     INSTALLER_NAME="Install RaDePi to HDD"
     INSTALLER_COMMENT="Install RaDePi permanently to your hard disk"
     SCRATCH_COMMENT="Create stories, games, and animations"
+    CNCJS_COMMENT="High-performance CNC controller"
+    LASERWEB_COMMENT="Open-source laser cutter control"
+    BLENDER_LEGACY_COMMENT="Lightweight 3D modeling software for older PCs (v2.83)"
 fi
 # --------------------------
 
@@ -223,7 +229,7 @@ cat << EOF > "$DESKTOP_DIR/cncjs.desktop"
 Version=1.0
 Type=Application
 Name=CNCjs
-Comment=高機能CNCコントローラー
+Comment=${CNCJS_COMMENT}
 # ターミナルでcncjsを起動し、数秒待ってからブラウザでアクセスするコマンド
 Exec=sh -c 'x-terminal-emulator -e cncjs & sleep 3 && x-www-browser http://localhost:8000'
 Icon=applications-engineering
@@ -238,7 +244,7 @@ cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
 Version=1.0
 Type=Application
 Name=LaserWeb
-Comment=オープンソース・レーザーカッター制御
+Comment=${LASERWEB_COMMENT}
 # ターミナルでlw.comm-serverを起動し、数秒待ってからブラウザでアクセスするコマンド
 Exec=sh -c 'x-terminal-emulator -e lw.comm-server & sleep 3 && x-www-browser http://localhost:8000'
 Icon=applications-engineering
@@ -255,7 +261,7 @@ cat << EOF > "$DESKTOP_DIR/blender-legacy.desktop"
 Version=1.0
 Type=Application
 Name=Blender (Legacy)
-Comment=古いPC向けの軽量な3Dモデリングソフト (v2.83)
+Comment=${BLENDER_LEGACY_COMMENT}
 Exec=/opt/blender-legacy/blender
 Icon=blender
 Terminal=false
@@ -296,11 +302,11 @@ fi
 echo "=== 6. 後処理 ==="
 if [ -f live-image-amd64.hybrid.iso ]; then
     if [ "$BUILD_LANG" = "ja" ]; then
-        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1.2-JP.iso"
-        echo "ビルド成功！ 日本語版ISO (RaDePi-v1.2-JP.iso) が作成されました。"
+        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1-JP.iso"
+        echo "ビルド成功！ 日本語版ISO (RaDePi-v1-JP.iso) が作成されました。"
     else
-        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1.2-EN.iso"
-        echo "ビルド成功！ 英語版ISO (RaDePi-v1.2-EN.iso) が作成されました。"
+        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1-EN.iso"
+        echo "ビルド成功！ 英語版ISO (RaDePi-v1-EN.iso) が作成されました。"
     fi
 else
     echo "エラー: ISOが生成されませんでした。"
