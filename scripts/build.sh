@@ -89,6 +89,9 @@ EOF
 mkdir -p config/includes.chroot/usr/share/backgrounds/xfce
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-bg.png" config/includes.chroot/usr/share/backgrounds/xfce/xfce-x.svg
+    echo "メイン壁紙を上書きしました！"
+else
+    echo "⚠️警告: image/RaDePi-bg.png が見つかりません！標準壁紙になります。"
 fi
 
 # 4. システム背景の配置
@@ -98,12 +101,15 @@ mkdir -p "$TARGET_DIR"
 if [ -f "${BASE_DIR}/image/RaDePi-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-bg.png" "$TARGET_DIR/default"
     cp "${BASE_DIR}/image/RaDePi-bg.png" "$TARGET_DIR/desktop-background"
+    echo "システム背景を上書きしました！"
 fi
 if [ -f "${BASE_DIR}/image/RaDePi-login-bg.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-login-bg.png" "$TARGET_DIR/login-background.svg"
+    echo "ログイン背景を上書きしました！"
 fi
 if [ -f "${BASE_DIR}/image/RaDePi-grub.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-grub.png" "$TARGET_DIR/desktop-grub.png"
+    echo "GRUB背景を上書きしました！"
 fi
 
 # 5. XFCEの初期設定 (ダークモード)
