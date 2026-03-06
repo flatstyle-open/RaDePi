@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+echo "=== CNCjs & LaserWeb (Node.js環境) のインストールを開始します ==="
+
+# 1. Debian標準のリポジトリからNode.jsとnpm（パッケージマネージャ）をインストール
+apt-get update
+apt-get install -y nodejs npm
+
+# 2. npmを使って、世界中のリポジトリからCNCjsをグローバルインストール
+echo "CNCjsをインストール中..."
+npm install -g cncjs
+
+# 3. npmを使って、LaserWebの通信サーバーをグローバルインストール
+echo "LaserWebサーバーをインストール中..."
+npm install -g lw.comm-server
+
+echo "=== CNCjs & LaserWeb のインストールが完了しました ==="
