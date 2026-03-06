@@ -235,7 +235,7 @@ EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
-# LaserWebへのショートカット (★ここを修正しました)
+# LaserWebへのショートカット
 cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
 [Desktop Entry]
 Version=1.0
