@@ -22,7 +22,7 @@ if [ "$BUILD_LANG" = "ja" ]; then
     INSTALLER_COMMENT="RaDePiをハードディスクにインストールします"
     SCRATCH_COMMENT="プログラミングでゲームやアニメを作ろう"
     CNCJS_COMMENT="高機能CNCコントローラー"
-    LASERWEB_COMMENT="オープンソース・レーザーカッター制御"
+    MEERK40T_COMMENT="強力なレーザーカッター制御ソフト"
     BLENDER_LEGACY_COMMENT="古いPC向けの軽量な3Dモデリングソフト (v2.83)"
 else
     echo "=== 英語(en)向けビルドを開始します ==="
@@ -31,7 +31,7 @@ else
     INSTALLER_COMMENT="Install RaDePi permanently to your hard disk"
     SCRATCH_COMMENT="Create stories, games, and animations"
     CNCJS_COMMENT="High-performance CNC controller"
-    LASERWEB_COMMENT="Open-source laser cutter control"
+    MEERK40T_COMMENT="Powerful laser cutter control software"
     BLENDER_LEGACY_COMMENT="Lightweight 3D modeling software for older PCs (v2.83)"
 fi
 # --------------------------
@@ -234,6 +234,21 @@ Categories=Engineering;
 EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
+
+# Meerk40tへのショートカット (★LaserWebから変更しました)
+cat << EOF > "$DESKTOP_DIR/meerk40t.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Meerk40t
+Comment=${MEERK40T_COMMENT}
+Exec=/opt/meerk40t/meerk40t-linux
+Icon=applications-engineering
+Terminal=false
+Categories=Engineering;
+EOF
+chmod +x "$DESKTOP_DIR/meerk40t.desktop"
+cp "$DESKTOP_DIR/meerk40t.desktop" "$APP_DIR/"
 
 # Blender (旧型PC用) へのショートカット
 cat << EOF > "$DESKTOP_DIR/blender-legacy.desktop"
