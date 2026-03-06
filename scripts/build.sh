@@ -198,7 +198,7 @@ Categories=System;
 EOF
 chmod +x "$DESKTOP_DIR/install-radepi.desktop"
 
-# 10.5 Scratch（Web版）へのショートカットをデスクトップに配置
+# Scratch（Web版）へのショートカットをデスクトップに配置
 cat << EOF > "$DESKTOP_DIR/scratch.desktop"
 [Desktop Entry]
 Version=1.0
@@ -217,8 +217,7 @@ chmod +x "$DESKTOP_DIR/scratch.desktop"
 
 echo "デスクトップにScratchのショートカットを配置しました。"
 
-# 10.6 CNCjsとLaserWebの起動ショートカットをデスクトップに配置
-# CNCjs用ショートカット
+# CNCjsの起動ショートカットをデスクトップに配置
 cat << EOF > "$DESKTOP_DIR/cncjs.desktop"
 [Desktop Entry]
 Version=1.0
@@ -233,7 +232,7 @@ Categories=Engineering;
 EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 
-# LaserWeb用ショートカット
+# LaserWebの起動ショートカットをデスクトップに配置
 cat << EOF > "$DESKTOP_DIR/laserweb.desktop"
 [Desktop Entry]
 Version=1.0
@@ -249,6 +248,20 @@ EOF
 chmod +x "$DESKTOP_DIR/laserweb.desktop"
 
 echo "デスクトップにCNCjsとLaserWebのショートカットを配置しました。"
+
+# Blender (旧型PC用) のショートカットを配置
+cat << EOF > "$DESKTOP_DIR/blender-legacy.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Blender (Legacy)
+Comment=古いPC向けの軽量な3Dモデリングソフト (v2.83)
+Exec=/opt/blender-legacy/blender
+Icon=blender
+Terminal=false
+Categories=Graphics;3DGraphics;
+EOF
+chmod +x "$DESKTOP_DIR/blender-legacy.desktop"
 
 # 11. VSCodiumの日本語化拡張機能（※日本語ビルドの時だけ仕込みます）
 if [ "$BUILD_LANG" = "ja" ]; then
