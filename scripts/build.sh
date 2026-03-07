@@ -144,6 +144,13 @@ if [ -f "${BASE_DIR}/image/RaDePi-menu.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-menu.png" config/includes.chroot/usr/share/pixmaps/radepi-menu.png
 fi
 
+if [ -f "${BASE_DIR}/image/cncjs-icon-round.png" ]; then
+    cp "${BASE_DIR}/image/cncjs-icon-round.png" config/includes.chroot/usr/share/pixmaps/cncjs-icon.png
+fi
+if [ -f "${BASE_DIR}/image/meerk40t-icon.png" ]; then
+    cp "${BASE_DIR}/image/meerk40t-icon.png" config/includes.chroot/usr/share/pixmaps/meerk40t-icon.png
+fi
+
 # 7. XFCEの初期パネル設定（ランチャー含む完全コピー）
 XFCE_PANEL_LAUNCHER_DIR="config/includes.chroot/etc/skel/.config/xfce4/panel"
 
