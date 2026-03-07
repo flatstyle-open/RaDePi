@@ -165,6 +165,8 @@ PasswordAuthentication yes
 EOF
 chmod 644 "$SSH_CONF_DIR/99-radepi-ssh.conf"
 
+# ★追加：LiveブートでもSSHサービスを自動起動させるためのリンク作成（フォルダ作成も追加）
+mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
 ln -s /lib/systemd/system/ssh.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/ssh.service
 
 # 9. ユーザー情報とパスワードのハードコード
