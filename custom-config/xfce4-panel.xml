@@ -54,17 +54,34 @@
       <property name="plugin-ids" type="array">
         <value type="int" value="11"/>
         <value type="int" value="12"/>
+        <value type="int" value="34"/>
+        <value type="int" value="53"/>
         <value type="int" value="13"/>
-        <value type="int" value="14"/>
+        <value type="int" value="47"/>
         <value type="int" value="15"/>
+        <value type="int" value="55"/>
+        <value type="int" value="49"/>
+        <value type="int" value="51"/>
+        <value type="int" value="17"/>
+        <value type="int" value="52"/>
+        <value type="int" value="41"/>
+        <value type="int" value="40"/>
+        <value type="int" value="56"/>
+        <value type="int" value="50"/>
+        <value type="int" value="57"/>
+        <value type="int" value="14"/>
+        <value type="int" value="35"/>
+        <value type="int" value="43"/>
+        <value type="int" value="54"/>
+        <value type="int" value="31"/>
+        <value type="int" value="46"/>
+        <value type="int" value="58"/>
         <value type="int" value="37"/>
         <value type="int" value="38"/>
         <value type="int" value="39"/>
-        <value type="int" value="40"/>
-        <value type="int" value="41"/>
+        <value type="int" value="60"/>
         <value type="int" value="42"/>
         <value type="int" value="16"/>
-        <value type="int" value="17"/>
         <value type="int" value="18"/>
       </property>
     </property>
@@ -91,6 +108,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="ethernet ネットワーク接続 &apos;有線接続 1&apos; はアクティブです"/>
         <value type="string" value="ethernet ネットワーク接続 &apos;enp5s0&apos; はアクティブです"/>
         <value type="string" value="fcitx5 tray window"/>
       </property>
@@ -105,7 +123,9 @@
     <property name="plugin-9" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-10" type="string" value="actions"/>
+    <property name="plugin-10" type="string" value="actions">
+      <property name="button-title" type="uint" value="0"/>
+    </property>
     <property name="plugin-11" type="string" value="showdesktop"/>
     <property name="plugin-12" type="string" value="separator"/>
     <property name="plugin-13" type="string" value="launcher">
@@ -128,7 +148,6 @@
         <value type="string" value="17724509644.desktop"/>
       </property>
     </property>
-    <property name="plugin-17" type="string" value="separator"/>
     <property name="plugin-18" type="string" value="directorymenu">
       <property name="base-directory" type="string" value="/home/radepi"/>
     </property>
@@ -212,6 +231,7 @@
     </property>
     <property name="plugin-22" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="known-players" type="string" value="firefox-esr"/>
     </property>
     <property name="plugin-23" type="string" value="launcher">
       <property name="items" type="array">
@@ -295,5 +315,67 @@
       </property>
     </property>
     <property name="plugin-48" type="string" value="separator"/>
+    <property name="plugin-31" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728406331.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-34" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728406442.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-35" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728406643.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-43" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728406874.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-46" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728407025.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-47" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728407246.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-49" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728407497.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-50" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728407718.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-51" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728407999.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-53" type="string" value="separator"/>
+    <property name="plugin-54" type="string" value="separator"/>
+    <property name="plugin-55" type="string" value="separator"/>
+    <property name="plugin-56" type="string" value="separator"/>
+    <property name="plugin-57" type="string" value="separator"/>
+    <property name="plugin-58" type="string" value="separator"/>
+    <property name="plugin-60" type="string" value="separator"/>
+    <property name="plugin-17" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728440471.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-52" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728504052.desktop"/>
+      </property>
+    </property>
   </property>
 </channel>

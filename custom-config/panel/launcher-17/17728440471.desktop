@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=CNCjs
+Comment=高機能CNCコントローラー
+Exec=sh -c 'x-terminal-emulator -e cncjs & sleep 3 && x-www-browser http://localhost:8000'
+Icon=applications-engineering
+Terminal=false
+Categories=Engineering;
+X-XFCE-Source=file:///home/flatstyle/Desktop/cncjs.desktop

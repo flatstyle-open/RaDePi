@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Blender (Legacy)
+Comment=古いPC向けの軽量な3Dモデリングソフト (v2.83)
+Exec=/opt/blender-legacy/blender
+Icon=blender
+Terminal=false
+Categories=Graphics;3DGraphics;
+X-XFCE-Source=file:///usr/share/applications/blender-legacy.desktop
