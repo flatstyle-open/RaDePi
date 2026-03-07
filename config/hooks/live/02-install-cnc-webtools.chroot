@@ -5,18 +5,18 @@ echo "=== CNCjs & Meerk40t のインストールを開始します ==="
 
 # 1. 必要なパッケージのインストール (Node.js と PythonのGUI/USB通信部品)
 apt-get update
-apt-get install -y nodejs npm python3-pip python3-venv python3-wxgtk4.0 python3-usb python3-serial
+apt-get install -y nodejs npm python3-pip python3-venv python3-wxgtk4.0 python3-usb python3-serial python3-opencv
 
 # 2. CNCjsのインストール (Node.js環境)
 echo "CNCjsをインストール中..."
 npm install -g cncjs
 
-# 3. Meerk40tのインストール (ネイティブPython環境)
-echo "Meerk40tをインストール中..."
+# 3. Meerk40tとカメラプラグインのインストール
+echo "Meerk40tとカメラプラグインをインストール中..."
 # /opt 配下にシステム共通の仮想環境を作成 (DebianのGUI部品を引き継ぐ)
 python3 -m venv --system-site-packages /opt/meerk40t-env
 
-# 仮想環境内のpipを使ってMeerk40tをインストール
-/opt/meerk40t-env/bin/pip install meerk40t
+# 仮想環境内のpipを使ってMeerk40tとプラグインをインストール
+/opt/meerk40t-env/bin/pip install meerk40t meerk40t-camera
 
 echo "=== CNCjs & Meerk40t のインストールが完了しました ==="
