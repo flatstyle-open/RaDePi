@@ -1,0 +1,33 @@
+#!/bin/sh
+set -e
+
+echo "=== UVtools のインストールを開始します ==="
+
+# 1. ダウンロードや展開に必要なパッケージと、画像処理系の基礎部品を念のためインストール
+apt-get update
+apt-get install -y curl wget unzip ca-certificates libfontconfig1 libgl1 libsm6 libxext6 libxrender1
+
+# 2. UVtoolsの配置場所を作成
+mkdir -p /opt/uvtools
+cd /opt/uvtools
+
+# 3. GitHub APIを使って、最新リリースのLinux用ZIPファイルのURLを自動検索
+echo "UVtoolsの最新版をダウンロード中..."
+UVTOOLS_URL=$(curl -s https://api.github.com/repos/sn4k3/UVtools/releases/latest | grep "browser_download_url" | grep -i "linux-x64" | grep -i "\.zip" | head -n 1 | cut -d '"' -f 4)
+
+if [ -n "$UVTOOLS_URL" ]; then
+    echo "ダウンロードURL: $UVTOOLS_URL"
+    wget -O uvtools.zip "$UVTOOLS_URL"
+    
+    echo "ファイルを展開中..."
+    unzip -q uvtools.zip
+    rm uvtools.zip
+    
+    # 実行ファイルに権限を付与
+    chmod +x UVtools
+else
+    echo "エラー: UVtoolsのダウンロードURLが見つかりませんでした。"
+    exit 1
+fi
+
+echo "=== UVtools のインストールが完了しました ==="
