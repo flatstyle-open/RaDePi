@@ -22,6 +22,7 @@ if [ "$BUILD_LANG" = "ja" ]; then
     INSTALLER_COMMENT="RaDePiをハードディスクにインストールします"
     SCRATCH_COMMENT="プログラミングでゲームやアニメを作ろう"
     CNCJS_COMMENT="高機能CNCコントローラー"
+    CAMERA_COMMENT="CNCjs用のWEBカメラストリーミングを開始します"
     MEERK40T_COMMENT="強力なレーザーカッター制御ソフト"
     BLENDER_LEGACY_COMMENT="古いPC向けの軽量な3Dモデリングソフト (v2.83)"
     UVTOOLS_COMMENT="光造形3Dプリンター用 スライスデータ最適化・修正ツール"
@@ -32,6 +33,7 @@ else
     INSTALLER_COMMENT="Install RaDePi permanently to your hard disk"
     SCRATCH_COMMENT="Create stories, games, and animations"
     CNCJS_COMMENT="High-performance CNC controller"
+    CAMERA_COMMENT="Start WEB camera streaming for CNCjs"
     MEERK40T_COMMENT="Powerful laser cutter control software"
     BLENDER_LEGACY_COMMENT="Lightweight 3D modeling software for older PCs (v2.83)"
     UVTOOLS_COMMENT="MSLA/DLP file analysis, repair and optimization tool"
@@ -291,7 +293,7 @@ cat << EOF > "$DESKTOP_DIR/start-camera.desktop"
 Version=1.0
 Type=Application
 Name=Start CNC Camera
-Comment=CNCjs用のWEBカメラストリーミングを開始します
+Comment=${CAMERA_COMMENT}
 # ターミナルを開いてustreamerを起動し、閉じれば配信も終了する仕組み
 Exec=x-terminal-emulator -e ustreamer -d /dev/video0 -m JPEG -r 640x480 -f 15 -p 8080
 Icon=camera-web
