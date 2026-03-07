@@ -235,14 +235,14 @@ EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
-# Meerk40tへのショートカット (★LaserWebから変更しました)
+# Meerk40tへのショートカット (ネイティブPython版に変更)
 cat << EOF > "$DESKTOP_DIR/meerk40t.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=Meerk40t
 Comment=${MEERK40T_COMMENT}
-Exec=/opt/meerk40t/meerk40t-linux
+Exec=/opt/meerk40t-env/bin/meerk40t
 Icon=applications-engineering
 Terminal=false
 Categories=Engineering;
