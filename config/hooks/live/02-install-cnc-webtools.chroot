@@ -5,7 +5,7 @@ echo "=== CNCjs & Meerk40t のインストールを開始します ==="
 
 # 1. 必要なパッケージのインストール (Node.js と PythonのGUI/USB通信部品)
 apt-get update
-apt-get install -y nodejs npm python3-pip python3-venv python3-wxgtk4.0 python3-usb python3-serial python3-opencv
+apt-get install -y nodejs npm python3-pip python3-venv python3-wxgtk4.0 python3-usb python3-serial python3-opencv ustreamer
 
 # 2. CNCjsのインストール (Node.js環境)
 echo "CNCjsをインストール中..."
