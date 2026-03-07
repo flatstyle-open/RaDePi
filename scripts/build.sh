@@ -166,6 +166,8 @@ PasswordAuthentication yes
 EOF
 chmod 644 "$SSH_CONF_DIR/99-radepi-ssh.conf"
 
+ln -s /lib/systemd/system/ssh.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/ssh.service
+
 # 9. ユーザー情報とパスワードのハードコード
 LIVE_CONF_DIR="config/includes.chroot/etc/live/config.conf.d"
 mkdir -p "$LIVE_CONF_DIR"
@@ -194,6 +196,32 @@ EOF
 
 mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
 ln -s /etc/systemd/system/radepi-password-fix.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-password-fix.service
+
+# =====================================================================
+# HDDインストール後の初回起動セットアップ (SSHキー再生成と有効化)
+# =====================================================================
+HDD_SETUP_DIR="config/includes.chroot/etc/systemd/system"
+mkdir -p "$HDD_SETUP_DIR"
+cat << 'EOF' > "$HDD_SETUP_DIR/radepi-hdd-setup.service"
+[Unit]
+Description=RaDePi HDD First Boot Setup
+After=multi-user.target
+# 「Liveブートじゃない時」だけ実行
+ConditionKernelCommandLine=!boot=live
+
+[Service]
+Type=oneshot
+# 古い鍵を消去 → 新しい鍵を生成 → SSHを有効化して起動 → この自動設定プログラム自身を無効化（1回限りで終了）
+ExecStart=/bin/sh -c 'rm -f /etc/ssh/ssh_host_* && ssh-keygen -A && systemctl enable ssh && systemctl restart ssh && systemctl disable radepi-hdd-setup.service'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# このプログラムをOSに登録する
+mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
+ln -s /etc/systemd/system/radepi-hdd-setup.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-hdd-setup.service
+# =====================================================================
 
 # 10. カスタムアプリのショートカット配置
 DESKTOP_DIR="config/includes.chroot/etc/skel/Desktop"
