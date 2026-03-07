@@ -109,6 +109,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="networkmanager アプレット"/>
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="ethernet ネットワーク接続 &apos;有線接続 1&apos; はアクティブです"/>
         <value type="string" value="ethernet ネットワーク接続 &apos;enp5s0&apos; はアクティブです"/>
@@ -383,19 +384,19 @@
     <property name="plugin-57" type="string" value="separator"/>
     <property name="plugin-58" type="string" value="separator"/>
     <property name="plugin-60" type="string" value="separator"/>
+    <property name="plugin-59" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728650632.desktop"/>
+      </property>
+    </property>
     <property name="plugin-17" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="17728440471.desktop"/>
+        <value type="string" value="17728733501.desktop"/>
       </property>
     </property>
     <property name="plugin-52" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="17728648151.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-59" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17728650632.desktop"/>
+        <value type="string" value="17728733552.desktop"/>
       </property>
     </property>
   </property>
