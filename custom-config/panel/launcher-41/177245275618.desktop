@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Icon=kicad
+Type=Application
+Categories=Science;Electronics;
+Exec=kicad %f
+StartupWMClass=kicad
+Keywords=KiCad;Projectmanager;
+MimeType=application/x-kicad-project;
+Name[ja]=KiCad
+Name=KiCad
+GenericName[ja]=EDAスイート
+GenericName=EDA Suite
+Comment[ja]=回路図設計と基板レイアウトのためのツール群
+Comment=Suite of tools for schematic design and circuit board layout
+X-Desktop-File-Install-Version=0.22
+X-XFCE-Source=file:///usr/share/applications/org.kicad.kicad.desktop

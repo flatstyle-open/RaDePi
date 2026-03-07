@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Categories=Science;Electronics;Engineering
+Name=bCNC
+Comment=bCNC Controller
+Exec=bCNC
+Icon=/usr/share/bcnc/bCNC.png
+Keywords=CNC;PCB;
+Path=
+Terminal=true
+StartupNotify=false
+X-XFCE-Source=file:///usr/share/applications/bCNC.desktop
