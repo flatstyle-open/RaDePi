@@ -49,7 +49,7 @@ echo "=== 1. クリーンアップ ==="
 sudo lb clean || true
 
 echo "=== 2. Configの生成 ==="
-# ★限界まで圧縮するための最強オプション(-comp xz -b 1M -Xbcj x86)を追加済み
+# ★限界まで圧縮するための最強オプション(-comp xz -b 1M -Xbcj x86)
 lb config noauto \
     --distribution trixie \
     --architecture amd64 \
@@ -115,6 +115,16 @@ fi
 if [ -f "${BASE_DIR}/image/RaDePi-grub.png" ]; then
     cp "${BASE_DIR}/image/RaDePi-grub.png" "$TARGET_DIR/desktop-grub.png"
     echo "GRUB背景を上書きしました！"
+fi
+
+# ★★★ 追加の選択用壁紙の配置 ★★★
+if [ -f "${BASE_DIR}/image/RaDePi-bg-default.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-bg-default.png" "$TARGET_DIR/RaDePi-bg-education.png"
+    echo "選択用壁紙 (education) を追加しました！"
+fi
+if [ -f "${BASE_DIR}/image/RaDePi-bg-desktop.png" ]; then
+    cp "${BASE_DIR}/image/RaDePi-bg-desktop.png" "$TARGET_DIR/RaDePi-bg-relax.png"
+    echo "選択用壁紙 (relax) を追加しました！"
 fi
 
 # 5. XFCEの初期設定 (ダークモード)
@@ -269,7 +279,7 @@ EOF
 chmod +x "$DESKTOP_DIR/blender-legacy.desktop"
 cp "$DESKTOP_DIR/blender-legacy.desktop" "$APP_DIR/"
 
-# ★ UVtoolsへのショートカット追加 ★
+# UVtoolsへのショートカット追加
 cat << EOF > "$DESKTOP_DIR/uvtools.desktop"
 [Desktop Entry]
 Version=1.0
