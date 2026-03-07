@@ -285,6 +285,22 @@ EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
+# CNCjs用カメラ配信ツールのショートカット追加
+cat << EOF > "$DESKTOP_DIR/start-camera.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Start CNC Camera
+Comment=CNCjs用のWEBカメラストリーミングを開始します
+# ターミナルを開いてustreamerを起動し、閉じれば配信も終了する仕組み
+Exec=x-terminal-emulator -e ustreamer -d /dev/video0 -m JPEG -r 640x480 -f 15 -p 8080
+Icon=camera-web
+Terminal=false
+Categories=Engineering;
+EOF
+chmod +x "$DESKTOP_DIR/start-camera.desktop"
+cp "$DESKTOP_DIR/start-camera.desktop" "$APP_DIR/"
+
 # Meerk40tへのショートカット
 cat << EOF > "$DESKTOP_DIR/meerk40t.desktop"
 [Desktop Entry]
