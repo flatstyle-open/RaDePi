@@ -55,6 +55,7 @@ lb config noauto \
     --iso-application "RaDePi OS" \
     --iso-publisher "RaDePi Project" \
     --iso-volume "RaDePi Live" \
+    --chroot-squashfs-options "-comp xz -b 1M -Xbcj x86" \
     --bootappend-live "boot=live components ${BOOT_LOCALE} username=radepi user-fullname=RaDePi hostname=radepi"
 
 echo "=== 3. カスタムファイルの適用 ==="
