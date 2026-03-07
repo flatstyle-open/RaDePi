@@ -17,6 +17,6 @@ echo "Meerk40tとカメラプラグインをインストール中..."
 python3 -m venv --system-site-packages /opt/meerk40t-env
 
 # 仮想環境内のpipを使ってMeerk40tとプラグインをインストール
-/opt/meerk40t-env/bin/pip install meerk40t meerk40t-camera
+/opt/meerk40t-env/bin/pip install meerk40t
 
 echo "=== CNCjs & Meerk40t のインストールが完了しました ==="
