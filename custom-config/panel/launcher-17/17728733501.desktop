@@ -2,7 +2,8 @@
 Version=1.0
 Type=Application
 Name=CNCjs
-Comment=高機能CNCコントローラー
+Comment[ja]=高機能CNCコントローラー
+Comment=High-performance CNC controller
 Exec=sh -c 'x-terminal-emulator -e cncjs & sleep 3 && x-www-browser http://localhost:8000'
 Icon=cncjs-icon
 Terminal=false
