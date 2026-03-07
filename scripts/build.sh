@@ -278,7 +278,7 @@ Type=Application
 Name=CNCjs
 Comment=${CNCJS_COMMENT}
 Exec=sh -c 'x-terminal-emulator -e cncjs & sleep 3 && x-www-browser http://localhost:8000'
-Icon=applications-engineering
+Icon=cncjs-icon
 Terminal=false
 Categories=Engineering;
 EOF
@@ -293,7 +293,7 @@ Type=Application
 Name=Meerk40t
 Comment=${MEERK40T_COMMENT}
 Exec=/opt/meerk40t-env/bin/meerk40t
-Icon=applications-engineering
+Icon=meerk40t-icon
 Terminal=false
 Categories=Engineering;
 EOF
