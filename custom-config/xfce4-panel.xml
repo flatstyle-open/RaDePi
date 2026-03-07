@@ -61,6 +61,7 @@
         <value type="int" value="15"/>
         <value type="int" value="55"/>
         <value type="int" value="49"/>
+        <value type="int" value="59"/>
         <value type="int" value="51"/>
         <value type="int" value="17"/>
         <value type="int" value="52"/>
@@ -108,6 +109,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="networkmanager applet"/>
         <value type="string" value="ethernet ネットワーク接続 &apos;有線接続 1&apos; はアクティブです"/>
         <value type="string" value="ethernet ネットワーク接続 &apos;enp5s0&apos; はアクティブです"/>
         <value type="string" value="fcitx5 tray window"/>
@@ -125,6 +127,20 @@
     </property>
     <property name="plugin-10" type="string" value="actions">
       <property name="button-title" type="uint" value="0"/>
+      <property name="items" type="array">
+        <value type="string" value="+lock-screen"/>
+        <value type="string" value="+switch-user"/>
+        <value type="string" value="+separator"/>
+        <value type="string" value="+suspend"/>
+        <value type="string" value="-hibernate"/>
+        <value type="string" value="-hybrid-sleep"/>
+        <value type="string" value="-separator"/>
+        <value type="string" value="+shutdown"/>
+        <value type="string" value="+restart"/>
+        <value type="string" value="+separator"/>
+        <value type="string" value="+logout"/>
+        <value type="string" value="-logout-dialog"/>
+      </property>
     </property>
     <property name="plugin-11" type="string" value="showdesktop"/>
     <property name="plugin-12" type="string" value="separator"/>
@@ -374,7 +390,12 @@
     </property>
     <property name="plugin-52" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="17728504052.desktop"/>
+        <value type="string" value="17728648151.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-59" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17728650632.desktop"/>
       </property>
     </property>
   </property>
