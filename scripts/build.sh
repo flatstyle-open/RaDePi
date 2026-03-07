@@ -24,6 +24,7 @@ if [ "$BUILD_LANG" = "ja" ]; then
     CNCJS_COMMENT="高機能CNCコントローラー"
     MEERK40T_COMMENT="強力なレーザーカッター制御ソフト"
     BLENDER_LEGACY_COMMENT="古いPC向けの軽量な3Dモデリングソフト (v2.83)"
+    UVTOOLS_COMMENT="光造形3Dプリンター用 スライスデータ最適化・修正ツール"
 else
     echo "=== 英語(en)向けビルドを開始します ==="
     BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=UTC"
@@ -33,6 +34,7 @@ else
     CNCJS_COMMENT="High-performance CNC controller"
     MEERK40T_COMMENT="Powerful laser cutter control software"
     BLENDER_LEGACY_COMMENT="Lightweight 3D modeling software for older PCs (v2.83)"
+    UVTOOLS_COMMENT="MSLA/DLP file analysis, repair and optimization tool"
 fi
 # --------------------------
 
@@ -47,6 +49,7 @@ echo "=== 1. クリーンアップ ==="
 sudo lb clean || true
 
 echo "=== 2. Configの生成 ==="
+# ★限界まで圧縮するための最強オプション(-comp xz -b 1M -Xbcj x86)を追加済み
 lb config noauto \
     --distribution trixie \
     --architecture amd64 \
@@ -236,7 +239,7 @@ EOF
 chmod +x "$DESKTOP_DIR/cncjs.desktop"
 cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
 
-# Meerk40tへのショートカット (ネイティブPython版に変更)
+# Meerk40tへのショートカット
 cat << EOF > "$DESKTOP_DIR/meerk40t.desktop"
 [Desktop Entry]
 Version=1.0
@@ -265,6 +268,21 @@ Categories=Graphics;3DGraphics;
 EOF
 chmod +x "$DESKTOP_DIR/blender-legacy.desktop"
 cp "$DESKTOP_DIR/blender-legacy.desktop" "$APP_DIR/"
+
+# ★ UVtoolsへのショートカット追加 ★
+cat << EOF > "$DESKTOP_DIR/uvtools.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=UVtools
+Comment=${UVTOOLS_COMMENT}
+Exec=/opt/uvtools/UVtools
+Icon=utilities-system-monitor
+Terminal=false
+Categories=Graphics;3DGraphics;Engineering;
+EOF
+chmod +x "$DESKTOP_DIR/uvtools.desktop"
+cp "$DESKTOP_DIR/uvtools.desktop" "$APP_DIR/"
 
 echo "デスクトップとアプリケーションメニューにショートカットを配置しました。"
 
