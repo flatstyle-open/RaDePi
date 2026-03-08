@@ -107,8 +107,9 @@ initrd [IP]/[tft-path]/initrd.img
 kernel [IP]/[tft-path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/ locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo
 initrd [IP]/[tft-path]/initrd.img
 ```
+
 ## 💖 Special Thanks & Acknowledgments (謝辞)
-RaDePi is built upon the incredible work of the open-source community. We would like to express our deepest gratitude to the developers and contributors of the following projects, as well as all other software included in this OS:
+RaDePi is built upon the incredible work of the open-source community. We would like to express our deepest gratitude to the developers and contributors of the following projects, as well as all other software included in this OS:</br>
 
 RaDePiは、オープンソースコミュニティの素晴らしい成果の上に成り立っています。以下のプロジェクトをはじめとする、本OSに収録されているすべてのソフトウェアの開発者および貢献者の皆様に、心より感謝申し上げます。
 
