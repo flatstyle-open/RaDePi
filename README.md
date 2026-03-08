@@ -32,11 +32,26 @@ Live USBやiPXEで起動した際、またはSSHでリモート接続する際�
 ---
 
 ## ✨ Key Features (主な特徴)
-* **🌍 Bilingual Ready:** 1つのビルドスクリプトから、日本語版とグローバル（英語版）のISOを生成可能。
-* **🎨 Digital Fab & Creator Tools:** CNCjs, Meerk40t (Native), UVtools, Blender 2.83 LTS, FreeCAD, Inkscape, Arduino IDE, KiCad, VSCodiumなど、モノづくりに必要なツールが最初からパネルに揃っています。
-* **🎮 Smart Input:** `input-remapper`を標準搭載し、ゲームパッドをCNCやレーザー加工機のワイヤレスペンダントとして活用可能。
-* **⚡ Highly Optimized & NFS Ready:** ZRAM（スワップ圧縮）のデフォルト有効化に加え、iPXE + NFSブートに完全対応。メモリの少ない古いPCでもネットワーク経由で軽快に動作します。
-* **🛠 Built-in Installer:** Ubuntuのように、Live環境のパネルから数クリックでOSをインストールできる「Calamares」を搭載。インストール後はアイコンが自動で消去され、デスクトップをクリーンに保ちます。
+
+* **🌍 Bilingual Ready**
+  Generate both Japanese and Global (English) ISOs from a single build script.
+  （1つのビルドスクリプトから、日本語版とグローバル（英語版）のISOを生成可能。）
+
+* **🎨 Digital Fab & Creator Tools**
+  Essential tools for makers—such as CNCjs, Meerk40t (Native), UVtools, Blender 2.83 LTS, FreeCAD, Inkscape, Arduino IDE, KiCad, and VSCodium—are pre-configured on the panel right out of the box.
+  （CNCjs, Meerk40t (ネイティブ動作), UVtools, Blender 2.83 LTS, FreeCAD, Inkscape, Arduino IDE, KiCad, VSCodiumなど、モノづくりに必要なツールが最初からパネルに揃っています。）
+
+* **🎮 Smart Input**
+  Comes with `input-remapper` pre-installed, allowing you to use gamepads as wireless pendants for CNC routers and laser cutters.
+  （`input-remapper`を標準搭載し、ゲームパッドをCNCやレーザー加工機のワイヤレスペンダントとして活用可能。）
+
+* **⚡ Highly Optimized & NFS Ready**
+  ZRAM (swap compression) is enabled by default, with full support for iPXE + NFS network booting. Runs smoothly over the network even on older, low-memory PCs.
+  （ZRAM（スワップ圧縮）のデフォルト有効化に加え、iPXE + NFSブートに完全対応。メモリの少ない古いPCでもネットワーク経由で軽快に動作します。）
+
+* **🛠 Built-in Installer**
+  Includes the "Calamares" installer, allowing you to install the OS with a few clicks from the Live environment panel, just like Ubuntu. Once installed, the installer icon is automatically removed to keep your desktop clean.
+  （Ubuntuのように、Live環境のパネルから数クリックでOSをインストールできる「Calamares」を搭載。インストール後はアイコンが自動で消去され、デスクトップをクリーンに保ちます。）
 
 ---
 
