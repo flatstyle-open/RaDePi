@@ -101,7 +101,7 @@ kernel [IP]/[tft-path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/rad
 initrd [IP]/[tft-path]/initrd.img
 ```
 
-例):日本語で起動させる場合
+例):日本語版を日本語で起動させる場合
 ```bash
 kernel [IP]/[tft-path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/ locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo
 initrd [IP]/[tft-path]/initrd.img
