@@ -57,7 +57,8 @@ Live USBやiPXEで起動した際、またはSSHでリモート接続する際�
 
 ## 📸 Screenshots (スクリーンショット)
 
-用途や気分に合わせて選べる、3つの公式テーマ（壁紙）を標準収録しています。
+Includes 3 official themes (wallpapers) by default. Choose the one that best suits your task or mood.</br>
+（用途や気分に合わせて選べる、3つの公式テーマ（壁紙）を標準収録しています。）
 
 <div align="center">
   <table>
