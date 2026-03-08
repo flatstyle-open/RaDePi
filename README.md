@@ -68,9 +68,9 @@ Includes 3 official themes (wallpapers) by default. Choose the one that best sui
       <td align="center"><b>Relax Theme</b><br>リラックス・カフェ</td>
     </tr>
     <tr>
-      <td><img src="README-image/desktop-main.jpg" alt="RaDePi Default Desktop" width="100%"></td>
-      <td><img src="README-image/desktop-edu.jpg" alt="RaDePi Education Desktop" width="100%"></td>
-      <td><img src="README-image/desktop-relax.jpg" alt="RaDePi Relax Desktop" width="100%"></td>
+      <td><img src="README-image/desktop-main.png" alt="RaDePi Default Desktop" width="100%"></td>
+      <td><img src="README-image/desktop-edu.png" alt="RaDePi Education Desktop" width="100%"></td>
+      <td><img src="README-image/desktop-relax.png" alt="RaDePi Relax Desktop" width="100%"></td>
     </tr>
   </table>
 </div>
