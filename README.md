@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="README-image/RaDePi-bunner.png" alt="RaDePi OS Banner" width="100%">
+  <img src="README-image/RaDePi-bunner.png" alt="RaDePi OS Banner" width="50%">
   
   <h1>🚀 RaDePi OS</h1>
   <p><b>A secure, modern, and creator-focused Live OS based on Debian 13.</b></p>
@@ -109,7 +109,7 @@ initrd [IP]/[tft-path]/initrd.img
 ```
 
 ## 💖 Special Thanks & Acknowledgments (謝辞)
-RaDePi is built upon the incredible work of the open-source community. We would like to express our deepest gratitude to the developers and contributors of the following projects, as well as all other software included in this OS:</br>
+RaDePi is built upon the incredible work of the open-source community. We would like to express our deepest gratitude to the developers and contributors of the following projects, as well as all other software included in this OS:
 
 RaDePiは、オープンソースコミュニティの素晴らしい成果の上に成り立っています。以下のプロジェクトをはじめとする、本OSに収録されているすべてのソフトウェアの開発者および貢献者の皆様に、心より感謝申し上げます。
 
@@ -119,5 +119,5 @@ RaDePiは、オープンソースコミュニティの素晴らしい成果の�
 * **[UVtools](https://github.com/sn4k3/UVtools)**: For the essential MSLA/DLP file analysis and repair tool.
 * **[Blender](https://www.blender.org/)**, **[FreeCAD](https://www.freecadweb.org/)**, **[VSCodium](https://vscodium.com/)**, and many more...
 
-Without your passion and dedication, RaDePi would not exist. Thank you!
+Without your passion and dedication, RaDePi would not exist. Thank you!</br>
 （皆様の情熱と献身的な開発がなければ、RaDePiは存在し得ませんでした。本当にありがとうございます！）
