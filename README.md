@@ -81,13 +81,13 @@ RaDePi is optimized for network booting. Here is an example of an menu configura
 （RaDePiはネットワークブートに最適化されています。メニューの記述例です。）
 
 ```bash
-kernel [IP]/[path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/
-initrd [IP]/[path]/initrd.img
+kernel [IP]/[tft-path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/
+initrd [IP]/[tft-path]/initrd.img
 ```
 
 例):日本語で起動させる場合
 ```bash
-kernel [IP]/[path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/ locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo
-initrd [IP]/[path]/initrd.img
+kernel [IP]/[tft-path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/ locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo
+initrd [IP]/[tft-path]/initrd.img
 ```
 
