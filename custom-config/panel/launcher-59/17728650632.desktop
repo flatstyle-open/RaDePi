@@ -2,7 +2,8 @@
 Version=1.0
 Type=Application
 Name=UVtools
-Comment=光造形3Dプリンター用 スライスデータ最適化・修正ツール
+Comment=MSLA/DLP file analysis, repair and optimization tool
+Comment[ja]=光造形3Dプリンター用 スライスデータ最適化・修正ツール
 Exec=/opt/uvtools/UVtools
 Icon=utilities-system-monitor
 Terminal=false
