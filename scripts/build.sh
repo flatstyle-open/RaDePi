@@ -206,7 +206,7 @@ mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
 ln -s /etc/systemd/system/radepi-password-fix.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-password-fix.service
 
 # =====================================================================
-# HDDインストール後の初回起動セットアップ (SSHキー再生成と有効化)
+# HDDインストール後の初回起動セットアップ (SSHキー再生成と有効化 + インストーラ削除)
 # =====================================================================
 HDD_SETUP_DIR="config/includes.chroot/etc/systemd/system"
 mkdir -p "$HDD_SETUP_DIR"
@@ -219,8 +219,8 @@ ConditionKernelCommandLine=!boot=live
 
 [Service]
 Type=oneshot
-# 古い鍵を消去 → 新しい鍵を生成 → SSHを有効化して起動 → この自動設定プログラム自身を無効化（1回限りで終了）
-ExecStart=/bin/sh -c 'rm -f /etc/ssh/ssh_host_* && ssh-keygen -A && systemctl enable ssh && systemctl restart ssh && systemctl disable radepi-hdd-setup.service'
+# 古い鍵消去 → 鍵生成 → SSH起動 → インストーラ削除 → 自身を無効化
+ExecStart=/bin/sh -c 'rm -f /etc/ssh/ssh_host_* && ssh-keygen -A && systemctl enable ssh && systemctl restart ssh && rm -f /usr/share/applications/install-radepi.desktop /usr/share/applications/calamares.desktop && systemctl disable radepi-hdd-setup.service'
 
 [Install]
 WantedBy=multi-user.target
@@ -231,15 +231,12 @@ mkdir -p config/includes.chroot/etc/systemd/system/multi-user.target.wants
 ln -s /etc/systemd/system/radepi-hdd-setup.service config/includes.chroot/etc/systemd/system/multi-user.target.wants/radepi-hdd-setup.service
 # =====================================================================
 
-# 10. カスタムアプリのショートカット配置
-DESKTOP_DIR="config/includes.chroot/etc/skel/Desktop"
+# 10. カスタムアプリのショートカット配置 (★すべてスタートメニュー内のみへ変更)
 APP_DIR="config/includes.chroot/usr/share/applications"
-
-mkdir -p "$DESKTOP_DIR"
 mkdir -p "$APP_DIR"
 
 # インストーラアイコン
-cat << EOF > "$DESKTOP_DIR/install-radepi.desktop"
+cat << EOF > "$APP_DIR/install-radepi.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -251,11 +248,10 @@ Terminal=false
 StartupNotify=true
 Categories=System;
 EOF
-chmod +x "$DESKTOP_DIR/install-radepi.desktop"
-cp "$DESKTOP_DIR/install-radepi.desktop" "$APP_DIR/"
+chmod +x "$APP_DIR/install-radepi.desktop"
 
 # Scratch（Web版）へのショートカット
-cat << EOF > "$DESKTOP_DIR/scratch.desktop"
+cat << EOF > "$APP_DIR/scratch.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -267,11 +263,10 @@ Terminal=false
 StartupNotify=false
 Categories=Education;
 EOF
-chmod +x "$DESKTOP_DIR/scratch.desktop"
-cp "$DESKTOP_DIR/scratch.desktop" "$APP_DIR/"
+chmod +x "$APP_DIR/scratch.desktop"
 
 # CNCjsへのショートカット
-cat << EOF > "$DESKTOP_DIR/cncjs.desktop"
+cat << EOF > "$APP_DIR/cncjs.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -282,11 +277,10 @@ Icon=cncjs-icon
 Terminal=false
 Categories=Engineering;
 EOF
-chmod +x "$DESKTOP_DIR/cncjs.desktop"
-cp "$DESKTOP_DIR/cncjs.desktop" "$APP_DIR/"
+chmod +x "$APP_DIR/cncjs.desktop"
 
 # Meerk40tへのショートカット
-cat << EOF > "$DESKTOP_DIR/meerk40t.desktop"
+cat << EOF > "$APP_DIR/meerk40t.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -297,11 +291,10 @@ Icon=meerk40t-icon
 Terminal=false
 Categories=Engineering;
 EOF
-chmod +x "$DESKTOP_DIR/meerk40t.desktop"
-cp "$DESKTOP_DIR/meerk40t.desktop" "$APP_DIR/"
+chmod +x "$APP_DIR/meerk40t.desktop"
 
 # Blender (旧型PC用) へのショートカット
-cat << EOF > "$DESKTOP_DIR/blender-legacy.desktop"
+cat << EOF > "$APP_DIR/blender-legacy.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -312,11 +305,10 @@ Icon=blender
 Terminal=false
 Categories=Graphics;3DGraphics;
 EOF
-chmod +x "$DESKTOP_DIR/blender-legacy.desktop"
-cp "$DESKTOP_DIR/blender-legacy.desktop" "$APP_DIR/"
+chmod +x "$APP_DIR/blender-legacy.desktop"
 
 # UVtoolsへのショートカット追加
-cat << EOF > "$DESKTOP_DIR/uvtools.desktop"
+cat << EOF > "$APP_DIR/uvtools.desktop"
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -327,10 +319,9 @@ Icon=utilities-system-monitor
 Terminal=false
 Categories=Graphics;3DGraphics;Engineering;
 EOF
-chmod +x "$DESKTOP_DIR/uvtools.desktop"
-cp "$DESKTOP_DIR/uvtools.desktop" "$APP_DIR/"
+chmod +x "$APP_DIR/uvtools.desktop"
 
-echo "デスクトップとアプリケーションメニューにショートカットを配置しました。"
+echo "アプリケーションメニューにショートカットを配置しました（デスクトップアイコンは廃止）。"
 
 # 11. VSCodiumの日本語化拡張機能
 if [ "$BUILD_LANG" = "ja" ]; then
