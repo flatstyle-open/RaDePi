@@ -107,4 +107,16 @@ initrd [IP]/[tft-path]/initrd.img
 kernel [IP]/[tft-path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/ locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo
 initrd [IP]/[tft-path]/initrd.img
 ```
+## 💖 Special Thanks & Acknowledgments (謝辞)
+RaDePi is built upon the incredible work of the open-source community. We would like to express our deepest gratitude to the developers and contributors of the following projects, as well as all other software included in this OS:
 
+RaDePiは、オープンソースコミュニティの素晴らしい成果の上に成り立っています。以下のプロジェクトをはじめとする、本OSに収録されているすべてのソフトウェアの開発者および貢献者の皆様に、心より感謝申し上げます。
+
+* **[Debian Project](https://www.debian.org/)** & **[XFCE](https://xfce.org/)**: For providing the rock-solid and lightweight foundation.
+* **[CNCjs](https://cnc.js.org/)**: For the high-performance web-based CNC controller.
+* **[Meerk40t](https://github.com/meerk40t/meerk40t)**: For the powerful and native laser cutter control software.
+* **[UVtools](https://github.com/sn4k3/UVtools)**: For the essential MSLA/DLP file analysis and repair tool.
+* **[Blender](https://www.blender.org/)**, **[FreeCAD](https://www.freecadweb.org/)**, **[VSCodium](https://vscodium.com/)**, and many more...
+
+Without your passion and dedication, RaDePi would not exist. Thank you!
+（皆様の情熱と献身的な開発がなければ、RaDePiは存在し得ませんでした。本当にありがとうございます！）
