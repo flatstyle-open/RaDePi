@@ -2,7 +2,8 @@
 Version=1.0
 Type=Application
 Name=Scratch
-Comment=プログラミングでゲームやアニメを作ろう
+Comment=Create stories, games, and animations
+Comment[ja]=プログラミングでゲームやアニメを作ろう
 Exec=x-www-browser https://scratch.mit.edu/
 Icon=radepi-menu
 Terminal=false
