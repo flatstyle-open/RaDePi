@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="image/RaDePi-login-bg.png" alt="RaDePi OS Banner" width="100%">
+  <img src="README-image/RaDePi-bunner.png" alt="RaDePi OS Banner" width="100%">
   
   <h1>🚀 RaDePi OS</h1>
   <p><b>A secure, modern, and creator-focused Live OS based on Debian 13.</b></p>
@@ -12,14 +12,14 @@
 <br>
 
 ## 📖 About RaDePi
-RaDePi is a secure and modern educational operating system based on Debian 13. Created as an homage to the Raspberry Pi Desktop, it provides an updated environment tailored for learning, creating, and digital fabrication (CNC/Laser). RaDePi functions as a Live OS but also includes a built-in installer (Calamares), allowing users to easily install it to their local drives after trying it out.
+RaDePi is a secure and modern operating system based on Debian 13, designed for education and creators. Created as an homage to the Raspberry Pi Desktop, it provides the latest environment tailored for learning, making, and digital fabrication (CNC/Laser). Not only does it function as a Live OS from a USB or network, but it also includes a built-in graphical installer, allowing you to easily install it directly to your PC's HDD/SSD after trying it out.
 
-RaDePi（ラデピ）は、Debian 13をベースにした安全でモダンな教育・クリエイター向けオペレーティングシステムです。Raspberry Pi Desktopへのオマージュとして作成され、学習やモノづくり、デジタルファブリケーション（CNC/レーザー加工）に最適な最新の環境を提供します。USBやネットワーク（iPXE）からのLive OSとして機能するだけでなく、グラフィカルなインストーラーを内蔵しているため、お試し後にそのままパソコンのHDD/SSDへ簡単にインストールすることが可能です。
+RaDePi（ラデピ）は、Debian 13をベースにした安全でモダンな教育・クリエイター向けオペレーティングシステムです。Raspberry Pi Desktopへのオマージュとして作成され、学習やモノづくり、デジタルファブリケーション（CNC/レーザー加工）に最適な最新の環境を提供します。USBやネットワークからのLive OSとして機能するだけでなく、グラフィカルなインストーラーを内蔵しているため、お試し後にそのままパソコンのHDD/SSDへ簡単にインストールすることが可能です。
 
 ---
 
 ## 🔑 Default Login Information (初期ログイン情報)
-Live USBやiPXEで起動した際、またはSSHでリモート接続する際のデフォルト設定です。
+Live USBやネットワークから起動した際、またはSSHでリモート接続する際のデフォルト設定です。
 
 * **Username (ユーザー名):** `radepi`
 * **Password (パスワード):** `live`
@@ -68,9 +68,9 @@ Includes 3 official themes (wallpapers) by default. Choose the one that best sui
       <td align="center"><b>Relax Theme</b><br>リラックス・カフェ</td>
     </tr>
     <tr>
-      <td><img src="image/desktop-main.jpg" alt="RaDePi Default Desktop" width="100%"></td>
-      <td><img src="image/desktop-edu.jpg" alt="RaDePi Education Desktop" width="100%"></td>
-      <td><img src="image/desktop-relax.jpg" alt="RaDePi Relax Desktop" width="100%"></td>
+      <td><img src="README-image/desktop-main.jpg" alt="RaDePi Default Desktop" width="100%"></td>
+      <td><img src="README-image/desktop-edu.jpg" alt="RaDePi Education Desktop" width="100%"></td>
+      <td><img src="README-image/desktop-relax.jpg" alt="RaDePi Relax Desktop" width="100%"></td>
     </tr>
   </table>
 </div>
