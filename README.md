@@ -62,7 +62,7 @@ Live USBやiPXEで起動した際、またはSSHでリモート接続する際�
 ---
 
 ## 🏗️ How to Build (ISOのビルド方法)
-RaDePi uses a highly automated `live-build` script. 
+RaDePi uses a highly automated `live-build` script. </br>
 （RaDePiは高度に自動化されたビルドスクリプトを使用しています。）
 
 ```bash
@@ -77,7 +77,7 @@ chmod +x scripts/build.sh
 ```
 
 ## 🌐 Network Boot (起動の設定例)
-RaDePi is optimized for network booting. Here is an example of an menu configuration:
+RaDePi is optimized for network booting. Here is an example of an menu configuration:</br>
 （RaDePiはネットワークブートに最適化されています。メニューの記述例です。）
 
 ```bash
