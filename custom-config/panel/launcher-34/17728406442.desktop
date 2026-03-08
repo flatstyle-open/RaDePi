@@ -2,7 +2,8 @@
 Version=1.0
 Type=Application
 Name=Blender (Legacy)
-Comment=古いPC向けの軽量な3Dモデリングソフト (v2.83)
+Comment=Lightweight 3D modeling software for older PCs (v2.83)
+Comment[ja]=古いPC向けの軽量な3Dモデリングソフト (v2.83)
 Exec=/opt/blender-legacy/blender
 Icon=blender
 Terminal=false
