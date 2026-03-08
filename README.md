@@ -26,7 +26,7 @@ Live USBやiPXEで起動した際、またはSSHでリモート接続する際�
 * **Hostname (ホスト名):** `radepi`
   * *SSH Access:* `ssh radepi@radepi.local`
 
-> **Note:** When you install RaDePi to your hard drive using the desktop installer, you will create a new personal user and password. The default `radepi` user will be safely removed, and SSH host keys will be automatically regenerated for security.
+> **Note:** When you install RaDePi to your hard drive using the desktop installer, you will create a new personal user and password. The default `radepi` user will be safely removed, and SSH host keys will be automatically regenerated for security.</br>
 > （**注:** パネルのアイコンからHDDへインストールする際、あなた自身の新しいユーザー名とパスワードを作成します。Live用の`radepi`ユーザーは安全に削除され、初回起動時に固有のSSHホストキーが自動生成・有効化されます。）
 
 ---
