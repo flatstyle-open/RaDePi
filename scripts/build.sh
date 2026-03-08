@@ -49,7 +49,7 @@ echo "=== 1. クリーンアップ ==="
 sudo lb clean || true
 
 echo "=== 2. Configの生成 ==="
-# ★限界まで圧縮するための最強オプション(-comp xz -b 1M -Xbcj x86)
+
 lb config noauto \
     --distribution trixie \
     --architecture amd64 \
