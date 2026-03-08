@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="README-image/RaDePi-bunner.png" alt="RaDePi OS Banner" width="50%">
+  <img src="README-image/RaDePi-bunner.png" alt="RaDePi OS Banner" width="25%">
   
   <h1>🚀 RaDePi OS</h1>
   <p><b>A secure, modern, and creator-focused Live OS based on Debian 13.</b></p>
