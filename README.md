@@ -74,8 +74,7 @@ cd RaDePi
 
 chmod +x scripts/build.sh
 ./scripts/build.sh
-
----
+```
 
 ## 🌐 Network Boot (起動の設定例)
 RaDePi is optimized for network booting. Here is an example of an menu configuration:
@@ -84,3 +83,4 @@ RaDePi is optimized for network booting. Here is an example of an menu configura
 ```bash
 kernel [IP]/[path]/vmlinuz boot=live netboot=nfs nfsroot=[IP]/[nfs-path]/radepi ip=dhcp rw quiet splash initrd=initrd.img live-media-path=/
 initrd [IP]/[path]/initrd.img
+```
