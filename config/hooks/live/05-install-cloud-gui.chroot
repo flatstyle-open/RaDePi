@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+echo "=== Googleドライブ連携GUIのインストールを開始します ==="
+
+# 余計なGNOMEパッケージを巻き込まないように --no-install-recommends を付与
+apt-get update
+apt-get install -y --no-install-recommends gnome-online-accounts gnome-control-center gvfs-fuse
+
+echo "=== Googleドライブ連携GUIのインストールが完了しました ==="
