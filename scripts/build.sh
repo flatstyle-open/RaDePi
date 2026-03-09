@@ -6,7 +6,7 @@ set -e
 # ==========================================
 
 # ★★★ ここでビルドする言語を指定します ("ja" または "en") ★★★
-BUILD_LANG="en"
+BUILD_LANG="ja"
 
 # 作業ディレクトリの定義
 BASE_DIR=$(pwd)
@@ -25,6 +25,8 @@ if [ "$BUILD_LANG" = "ja" ]; then
     MEERK40T_COMMENT="強力なレーザーカッター制御ソフト"
     BLENDER_LEGACY_COMMENT="古いPC向けの軽量な3Dモデリングソフト (v2.83)"
     UVTOOLS_COMMENT="光造形3Dプリンター用 スライスデータ最適化・修正ツール"
+    CLOUD_SETUP_NAME="Googleドライブ連携"
+    CLOUD_SETUP_COMMENT="Googleドライブ等のオンラインアカウントをマウントします"
 else
     echo "=== 英語(en)向けビルドを開始します ==="
     BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=UTC"
@@ -35,6 +37,8 @@ else
     MEERK40T_COMMENT="Powerful laser cutter control software"
     BLENDER_LEGACY_COMMENT="Lightweight 3D modeling software for older PCs (v2.83)"
     UVTOOLS_COMMENT="MSLA/DLP file analysis, repair and optimization tool"
+    CLOUD_SETUP_NAME="Cloud Account Setup"
+    CLOUD_SETUP_COMMENT="Connect your Google Drive and online accounts"
 fi
 # --------------------------
 
@@ -321,7 +325,21 @@ Categories=Graphics;3DGraphics;Engineering;
 EOF
 chmod +x "$APP_DIR/uvtools.desktop"
 
-echo "アプリケーションメニューにショートカットを配置しました（デスクトップアイコンは廃止）。"
+# Googleドライブ連携（クラウド設定）へのショートカット追加
+cat << EOF > "$APP_DIR/radepi-cloud-setup.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=${CLOUD_SETUP_NAME}
+Comment=${CLOUD_SETUP_COMMENT}
+Exec=env XDG_CURRENT_DESKTOP=GNOME gnome-control-center online-accounts
+Icon=gnome-control-center
+Terminal=false
+Categories=Settings;Network;
+EOF
+chmod +x "$APP_DIR/radepi-cloud-setup.desktop"
+
+echo "アプリケーションメニューにショートカットを配置しました"
 
 # 11. VSCodiumの日本語化拡張機能
 if [ "$BUILD_LANG" = "ja" ]; then
