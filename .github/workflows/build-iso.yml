@@ -7,8 +7,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    #runs-on: self-hosted
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
       - name: Force cleanup with sudo
@@ -33,12 +33,12 @@ jobs:
           ./scripts/build.sh
 
       # ISOファイルのアップロード
-      - name: Upload ISO artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: radepi-iso
-          path: RaDePi-V1-en.iso
-          retention-days: 1
+    #  - name: Upload ISO artifact
+    #    uses: actions/upload-artifact@v4
+    #    with:
+    #      name: radepi-iso
+    #      path: RaDePi-latest.iso
+    #      retention-days: 1
 
       # iPXE用ファイル群のアップロードを追加
     #  - name: Upload PXE assets
