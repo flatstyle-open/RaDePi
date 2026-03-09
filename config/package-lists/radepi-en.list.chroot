@@ -38,6 +38,7 @@ sudo
 git
 curl
 wget
+libfuse2
 gparted
 gnome-disk-utility
 zram-tools
