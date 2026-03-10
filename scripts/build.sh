@@ -6,7 +6,7 @@ set -e
 # ==========================================
 
 # ★★★ ここでビルドする言語を指定します ("ja" または "en") ★★★
-BUILD_LANG="ja"
+BUILD_LANG="en"
 
 # 作業ディレクトリの定義
 BASE_DIR=$(pwd)
@@ -428,11 +428,11 @@ fi
 echo "=== 6. 後処理 ==="
 if [ -f live-image-amd64.hybrid.iso ]; then
     if [ "$BUILD_LANG" = "ja" ]; then
-        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1.0.1-JP.iso"
-        echo "ビルド成功！ 日本語版ISO (RaDePi-v1.0.1-JP.iso) が作成されました。"
+        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1.0.2-JP.iso"
+        echo "ビルド成功！ 日本語版ISO (RaDePi-v1.0.2-JP.iso) が作成されました。"
     else
-        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1.0.1-EN.iso"
-        echo "ビルド成功！ 英語版ISO (RaDePi-v1.0.1-EN.iso) が作成されました。"
+        mv live-image-amd64.hybrid.iso "${BASE_DIR}/RaDePi-v1.0.2-EN.iso"
+        echo "ビルド成功！ 英語版ISO (RaDePi-v1.0.2-EN.iso) が作成されました。"
     fi
 else
     echo "エラー: ISOが生成されませんでした。"
