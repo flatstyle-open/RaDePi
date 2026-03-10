@@ -17,7 +17,8 @@ WORK_DIR="${BASE_DIR}/work"
 # --------------------------
 if [ "$BUILD_LANG" = "ja" ]; then
     echo "=== 日本語(ja)向けビルドを開始します ==="
-    BOOT_LOCALE="locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=Asia/Tokyo"
+    TARGET_TIMEZONE="Asia/Tokyo"
+    BOOT_LOCALE="locales=ja_JP.UTF-8 keyboard-layouts=jp timezone=${TARGET_TIMEZONE}"
     INSTALLER_NAME="RaDePiをHDDにインストール"
     INSTALLER_COMMENT="RaDePiをハードディスクにインストールします"
     SCRATCH_COMMENT="プログラミングでゲームやアニメを作ろう"
@@ -29,7 +30,8 @@ if [ "$BUILD_LANG" = "ja" ]; then
     CLOUD_SETUP_COMMENT="Googleドライブ等のオンラインアカウントをマウントします"
 else
     echo "=== 英語(en)向けビルドを開始します ==="
-    BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=UTC"
+    TARGET_TIMEZONE="UTC"
+    BOOT_LOCALE="locales=en_US.UTF-8 keyboard-layouts=us timezone=${TARGET_TIMEZONE}"
     INSTALLER_NAME="Install RaDePi to HDD"
     INSTALLER_COMMENT="Install RaDePi permanently to your hard disk"
     SCRATCH_COMMENT="Create stories, games, and animations"
@@ -167,6 +169,20 @@ if [ -d "${BASE_DIR}/custom-config/panel" ]; then
     mkdir -p "$XFCE_PANEL_LAUNCHER_DIR"
     cp -r "${BASE_DIR}/custom-config/panel/"* "$XFCE_PANEL_LAUNCHER_DIR/"
 fi
+
+# ★追加：Windowsとの時刻ズレ（BIOS時計の奪い合い）を防止するフックスクリプトの生成
+mkdir -p config/hooks/normal
+cat << 'EOF' > config/hooks/normal/06-fix-rtc-time.chroot
+#!/bin/sh
+set -e
+echo "=== BIOSの時計をローカルタイム(Windows互換)として設定します ==="
+cat << 'INNER_EOF' > /etc/adjtime
+0.000000 0 0.000000
+0
+LOCAL
+INNER_EOF
+EOF
+chmod +x config/hooks/normal/06-fix-rtc-time.chroot
 
 # 8. SSHのパスワードログイン許可設定
 SSH_CONF_DIR="config/includes.chroot/etc/ssh/sshd_config.d"
