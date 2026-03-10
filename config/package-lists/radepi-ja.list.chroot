@@ -43,6 +43,7 @@ gparted
 gnome-disk-utility
 zram-tools
 gnome-system-monitor
+systemd-timesyncd
 
 # 教育・プログラミング
 thonny
