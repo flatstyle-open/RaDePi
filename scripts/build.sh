@@ -132,6 +132,44 @@ if [ -f "${BASE_DIR}/image/RaDePi-bg-desktop.png" ]; then
     echo "選択用壁紙 (relax) を追加しました！"
 fi
 
+# 4.5. 日本語入力「Mozc」の初期設定
+echo "=== 3.6. 日本語入力 (Fcitx5) の初期設定を流し込みます ==="
+
+if [ "$BUILD_LANG" = "ja" ]; then
+    # 1. Fcitx5で最初から「Mozc」を使えるようにするプロファイル作成
+    FCITX5_SKEL_DIR="config/includes.chroot/etc/skel/.config/fcitx5"
+    mkdir -p "$FCITX5_SKEL_DIR"
+    
+    cat << 'EOF' > "$FCITX5_SKEL_DIR/profile"
+[Groups/0]
+Name=Default
+Default Layout=jp
+DefaultIM=mozc
+
+[Groups/0/Items/0]
+Name=keyboard-jp
+Layout=
+
+[Groups/0/Items/1]
+Name=mozc
+Layout=
+
+[GroupOrder]
+0=Default
+EOF
+
+    # 2. 環境変数の設定
+    # 既存の .profile や .bashrc への追記、または新規作成
+    cat << 'EOF' >> config/includes.chroot/etc/skel/.profile
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export DefaultIMModule=fcitx
+EOF
+
+    echo "日本語入力環境の設定を skel に配置しました。"
+fi
+
 # 5. XFCEの初期設定 (ダークモード)
 XFCE_CONF_DIR="config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
 mkdir -p "$XFCE_CONF_DIR"
