@@ -6,7 +6,7 @@ set -e
 # ==========================================
 
 # ★★★ ここでビルドする言語を指定します ("ja" または "en") ★★★
-BUILD_LANG="en"
+BUILD_LANG="ja"
 
 # 作業ディレクトリの定義
 BASE_DIR=$(pwd)
@@ -133,14 +133,13 @@ if [ -f "${BASE_DIR}/image/RaDePi-bg-desktop.png" ]; then
 fi
 
 # 4.5. 日本語入力「Mozc」の初期設定
-echo "=== 3.6. 日本語入力 (Fcitx5) の初期設定を流し込みます ==="
-
 if [ "$BUILD_LANG" = "ja" ]; then
+    echo "=== 3.6. 日本語入力 (Fcitx5) の初期設定を流し込みます ==="
     # 1. Fcitx5で最初から「Mozc」を使えるようにするプロファイル作成
     FCITX5_SKEL_DIR="config/includes.chroot/etc/skel/.config/fcitx5"
     mkdir -p "$FCITX5_SKEL_DIR"
-    
-    cat << 'EOF' > "$FCITX5_SKEL_DIR/profile"
+
+cat << 'EOF' > "$FCITX5_SKEL_DIR/profile"
 [Groups/0]
 Name=Default
 Default Layout=jp
@@ -158,9 +157,9 @@ Layout=
 0=Default
 EOF
 
-    # 2. 環境変数の設定
-    # 既存の .profile や .bashrc への追記、または新規作成
-    cat << 'EOF' >> config/includes.chroot/etc/skel/.profile
+# 2. 環境変数の設定
+# 既存の .profile や .bashrc への追記、または新規作成
+cat << 'EOF' >> config/includes.chroot/etc/skel/.profile
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -209,8 +208,8 @@ if [ -d "${BASE_DIR}/custom-config/panel" ]; then
 fi
 
 # ★追加：Windowsとの時刻ズレ（BIOS時計の奪い合い）を防止するフックスクリプトの生成
-mkdir -p config/hooks/normal
-cat << 'EOF' > config/hooks/normal/06-fix-rtc-time.chroot
+mkdir -p config/hooks/live
+cat << 'EOF' > config/hooks/live/06-fix-rtc-time.chroot
 #!/bin/sh
 set -e
 echo "=== BIOSの時計をローカルタイム(Windows互換)として設定します ==="
@@ -220,7 +219,7 @@ cat << 'INNER_EOF' > /etc/adjtime
 LOCAL
 INNER_EOF
 EOF
-chmod +x config/hooks/normal/06-fix-rtc-time.chroot
+chmod +x config/hooks/live/06-fix-rtc-time.chroot
 
 # 8. SSHのパスワードログイン許可設定
 SSH_CONF_DIR="config/includes.chroot/etc/ssh/sshd_config.d"
