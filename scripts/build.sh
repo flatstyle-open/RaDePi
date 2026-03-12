@@ -209,7 +209,7 @@ fi
 
 # ★追加：Windowsとの時刻ズレ（BIOS時計の奪い合い）を防止するフックスクリプトの生成
 mkdir -p config/hooks/live
-cat << 'EOF' > config/hooks/live/06-fix-rtc-time.chroot
+cat << 'EOF' > config/hooks/live/101-fix-rtc-time.chroot
 #!/bin/sh
 set -e
 echo "=== BIOSの時計をローカルタイム(Windows互換)として設定します ==="
@@ -219,7 +219,7 @@ cat << 'INNER_EOF' > /etc/adjtime
 LOCAL
 INNER_EOF
 EOF
-chmod +x config/hooks/live/06-fix-rtc-time.chroot
+chmod +x config/hooks/live/101-fix-rtc-time.chroot
 
 # 8. SSHのパスワードログイン許可設定
 SSH_CONF_DIR="config/includes.chroot/etc/ssh/sshd_config.d"
