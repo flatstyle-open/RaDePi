@@ -10,8 +10,8 @@ jobs:
     #runs-on: ubuntu-latest
     runs-on: self-hosted
 
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+   # env:
+   #   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     
     steps:
       - name: Force cleanup with sudo
@@ -28,7 +28,7 @@ jobs:
           sudo rm -rf ${{ github.workspace }}/.[!.]* || true
           
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Run build script
         run: |
