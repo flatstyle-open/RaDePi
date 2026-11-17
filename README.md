@@ -6,7 +6,7 @@
 
   <img src="https://img.shields.io/badge/Based_on-Debian_13_(Trixie)-A81D33?style=for-the-badge&logo=debian" alt="Debian 13">
   <img src="https://img.shields.io/badge/Desktop-XFCE_4-2284F2?style=for-the-badge&logo=xfce" alt="XFCE">
-  <img src="https://img.shields.io/badge/License-MIT-4CB749?style=for-the-badge" alt="MIT License">
+   <img src="https://img.shields.io/badge/License-GPL--3.0-4CB749?style=for-the-badge" alt="GPL-3.0 License">
 </div>
 
 <br>
